@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function index() {
   const { t, i18n } = useTranslation();
-  // const isLogin = localStorage.getItem("login") === "true";
-  // if (isLogin) {
-  //   return <Navigate to="/dashboard" />;
-  // }
+  const isLogin = localStorage.getItem("login") === "true";
+  if (isLogin) {
+    return <Navigate to="/dashboard" />;
+  }
 
   const [login, setLogin] = useState({ id: "", pw: "" });
   const navigate = useNavigate();
