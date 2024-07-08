@@ -1,4 +1,6 @@
 import Table from "#/components/Table";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 function index() {
@@ -48,10 +50,24 @@ function index() {
     ["location", "지역"],
     ["lastLogin", "마지막 로그인"],
   ];
+  const [isExpand, setIsExpand] = useState(true);
+  const { t } = useTranslation();
   return (
-    <div className="grid h-full grid-cols-2 gap-2">
-      <SyntaxHighlighter language="tsx" style={vscDarkPlus}>
-        {`type TableTypes = {
+    <>
+      <div>
+        <div
+          className="cursor-pointer badge badge-lg badge-outline"
+          onClick={() => setIsExpand((prev) => !prev)}
+        >
+          {`${t("common.code")} ${
+            isExpand ? t("common.collapse") : t("common.expand")
+          }`}
+        </div>
+      </div>
+      {isExpand && (
+        <div className="grid grid-cols-2 gap-2 h-3/4">
+          <SyntaxHighlighter language="tsx" style={vscDarkPlus}>
+            {`type TableTypes = {
   data: {
     [x: string]: string | number | boolean | string[] | number[] | boolean[];
   }[];
@@ -83,9 +99,9 @@ function index() {
   }[];
 };
         `}
-      </SyntaxHighlighter>
-      <SyntaxHighlighter language="tsx" style={vscDarkPlus}>
-        {`import { useState } from "react";
+          </SyntaxHighlighter>
+          <SyntaxHighlighter language="tsx" style={vscDarkPlus}>
+            {`import { useState } from "react";
 import Table from "#/components/Table";
 import { TableTypes } from "#/data/types/components";
 
@@ -126,9 +142,11 @@ function index() {
 }
 
 export default index;`}
-      </SyntaxHighlighter>
+          </SyntaxHighlighter>
+        </div>
+      )}
       <Table buttons={buttons} data={dummyData} addedMap={addedMap} />
-    </div>
+    </>
   );
 }
 
