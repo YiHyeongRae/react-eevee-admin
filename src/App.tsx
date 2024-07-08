@@ -27,14 +27,25 @@ for (const path of Object.keys(pages)) {
     ? fileName.replace("$", ":")
     : fileName.replace(/\/index/, "");
 
+  const isProduction = import.meta.env.PROD;
+
   routes.push({
-    path: fileName === "index" ? "/" : `/${normalizedPathName.toLowerCase()}`,
+    path:
+      fileName === "index"
+        ? "/"
+        : isProduction
+        ? `react-eevee-admin/${normalizedPathName.toLowerCase()}`
+        : `/${normalizedPathName.toLowerCase()}`,
     Element: pages[path].default,
     loader: pages[path]?.loader as LoaderFunction | undefined,
     action: pages[path]?.action as ActionFunction | undefined,
     ErrorBoundary: pages[path]?.ErrorBoundary,
     withAuth: !authList.includes(
-      fileName === "index" ? "/" : `/${normalizedPathName.toLowerCase()}`
+      fileName === "index"
+        ? "/"
+        : isProduction
+        ? `react-eevee-admin/${normalizedPathName.toLowerCase()}`
+        : `/${normalizedPathName.toLowerCase()}`
     ),
   });
 }
