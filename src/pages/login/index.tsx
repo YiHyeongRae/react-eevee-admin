@@ -25,7 +25,7 @@ function index() {
           <h1 className="mb-10 text-5xl font-bold">React-Eevee-Admin</h1>
         </div>
         <div className="w-full max-w-sm shadow-2xl card shrink-0 bg-base-100">
-          <div className="card-body">
+          <form className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">{t("common.email")}</span>
@@ -74,7 +74,7 @@ function index() {
                 className="btn btn-block btn-primary"
                 onClick={() => {
                   localStorage.setItem("login", "true");
-                  navigate("/dashboard");
+                  // navigate("/dashboard");
                 }}
               >
                 {t("header.login")}
@@ -93,7 +93,7 @@ function index() {
                 </a>
               </label>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
