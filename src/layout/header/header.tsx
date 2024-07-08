@@ -3,6 +3,7 @@ import { Modal, ModalOpener } from "../../components/Modal";
 import { useState } from "react";
 import { Alert } from "../../components/Alert";
 import { HeaderTypes } from "../../data/types/layout";
+import { useNavigate } from "react-router-dom";
 
 function index({ func, navState }: HeaderTypes) {
   const { t, i18n } = useTranslation();
@@ -12,6 +13,7 @@ function index({ func, navState }: HeaderTypes) {
   const [currentTheme, setCurrentTheme] = useState(
     localStorage.getItem("currentTheme")
   );
+  const navigate = useNavigate();
 
   return (
     <div
@@ -118,6 +120,7 @@ function index({ func, navState }: HeaderTypes) {
                   type="button"
                   onClick={() => {
                     localStorage.setItem("login", "false");
+                    navigate("/login");
                   }}
                   value={t(`header.logout`)}
                 />

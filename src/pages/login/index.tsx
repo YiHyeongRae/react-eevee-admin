@@ -1,13 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function index() {
   const { t, i18n } = useTranslation();
-  const isLogin = localStorage.getItem("login") === "true";
-  if (isLogin) {
-    return <Navigate to="/dashboard" />;
-  }
+  // const isLogin = localStorage.getItem("login") === "true";
+  // if (isLogin) {
+  //   return <Navigate to="/dashboard" />;
+  // }
+
+  const [login, setLogin] = useState({ id: "", pw: "" });
+  const navigate = useNavigate();
   useEffect(() => {
     const locales = localStorage.getItem("admin-locales");
 
@@ -35,6 +38,12 @@ function index() {
                   placeholder="email"
                   className="w-[50%] input input-bordered"
                   required
+                  value={login.id}
+                  onChange={(e) =>
+                    setLogin((prev) => {
+                      return { ...prev, id: e.target.value };
+                    })
+                  }
                 />
                 <input
                   disabled
@@ -53,13 +62,21 @@ function index() {
                 placeholder="password"
                 className="input input-bordered"
                 required
+                value={login.pw}
+                onChange={(e) =>
+                  setLogin((prev) => {
+                    return { ...prev, pw: e.target.value };
+                  })
+                }
               />
             </div>
             <div className="mt-6 form-control">
               <button
-                className="btn btn-primary"
+                disabled={login.id === "" || login.pw === ""}
+                className="btn btn-block btn-primary"
                 onClick={() => {
                   localStorage.setItem("login", "true");
+                  navigate("/dashboard");
                 }}
               >
                 {t("header.login")}
