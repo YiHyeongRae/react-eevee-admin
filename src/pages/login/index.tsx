@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function index() {
   const { t, i18n } = useTranslation();
@@ -10,7 +10,6 @@ function index() {
   }
 
   const [login, setLogin] = useState({ id: "", pw: "" });
-  const navigate = useNavigate();
   useEffect(() => {
     const locales = localStorage.getItem("admin-locales");
 
