@@ -34,7 +34,7 @@ for (const path of Object.keys(pages)) {
       fileName === "index"
         ? "/"
         : isProduction
-        ? `react-eevee-admin/${normalizedPathName.toLowerCase()}`
+        ? `/react-eevee-admin/${normalizedPathName.toLowerCase()}`
         : `/${normalizedPathName.toLowerCase()}`,
     Element: pages[path].default,
     loader: pages[path]?.loader as LoaderFunction | undefined,
@@ -44,7 +44,7 @@ for (const path of Object.keys(pages)) {
       fileName === "index"
         ? "/"
         : isProduction
-        ? `react-eevee-admin/${normalizedPathName.toLowerCase()}`
+        ? `/react-eevee-admin/${normalizedPathName.toLowerCase()}`
         : `/${normalizedPathName.toLowerCase()}`
     ),
   });
