@@ -18,16 +18,14 @@ function index() {
   }, []);
   return (
     <div className="min-h-screen hero bg-base-100 login">
-      <div className="flex-col hero-content lg:flex-row-reverse">
+      <div className="flex-col gap-10 hero-content lg:flex-row-reverse">
         <div className="text-center lg:text-left">
-          <img src="/logo.png" className="mx-auto mb-2" />
+          {/* <img src="/vite.svg" className="mx-auto mb-2" /> */}
 
-          <h1 className="mb-10 text-5xl font-bold text-primary">
-            Andreia Admin System
-          </h1>
+          <h1 className="mb-10 text-5xl font-bold">React-Eevee-Admin</h1>
         </div>
         <div className="w-full max-w-sm shadow-2xl card shrink-0 bg-base-100">
-          <form className="card-body">
+          <div className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">{t("common.email")}</span>
@@ -95,7 +93,7 @@ function index() {
                 </a>
               </label>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
