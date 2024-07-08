@@ -52,7 +52,7 @@ function index() {
   //   },
   // ];
 
-  const [dummyData, setDummyData] = useState([
+  const [dummyData] = useState([
     {
       userName: "dev@dev.kr",
       category: "서비스",

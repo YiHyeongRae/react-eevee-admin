@@ -42,7 +42,7 @@ function index() {
   //   },
   // ];
 
-  const [dummyData, setDummyData] = useState([
+  const [dummyData] = useState([
     {
       userName: "문의하는사람",
       category: "서비스",

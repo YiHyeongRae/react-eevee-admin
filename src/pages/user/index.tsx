@@ -130,12 +130,12 @@ function index() {
   }, [dateTime]);
 
   const textarea = useRef<HTMLTextAreaElement>(null);
-  const handleResizeHeight = () => {
-    if (textarea.current) {
-      textarea.current.style.height = "auto"; // 높이 초기화
-      textarea.current.style.height = textarea.current.scrollHeight + "px";
-    }
-  };
+  // const handleResizeHeight = () => {
+  //   if (textarea.current) {
+  //     textarea.current.style.height = "auto"; // 높이 초기화
+  //     textarea.current.style.height = textarea.current.scrollHeight + "px";
+  //   }
+  // };
 
   const { t, i18n } = useTranslation();
   useEffect(() => {
@@ -196,7 +196,12 @@ function index() {
                       <EditableCell
                         item={item}
                         index={index}
-                        edit={{ editItem: editItem, setEditItem: setEditItem }}
+                        edit={{
+                          editItem: editItem,
+                          setEditItem: setEditItem,
+                          confirmFunc: () => {},
+                          cancleFunc: () => {},
+                        }}
                       />
                     );
                   },
@@ -208,7 +213,12 @@ function index() {
                       <EditableCell
                         item={item}
                         index={index}
-                        edit={{ editItem: editItem, setEditItem: setEditItem }}
+                        edit={{
+                          editItem: editItem,
+                          setEditItem: setEditItem,
+                          confirmFunc: () => {},
+                          cancleFunc: () => {},
+                        }}
                       />
                     );
                   },
@@ -220,7 +230,12 @@ function index() {
                       <EditableCell
                         item={item}
                         index={index}
-                        edit={{ editItem: editItem, setEditItem: setEditItem }}
+                        edit={{
+                          editItem: editItem,
+                          setEditItem: setEditItem,
+                          confirmFunc: () => {},
+                          cancleFunc: () => {},
+                        }}
                       />
                     );
                   },
@@ -232,7 +247,12 @@ function index() {
                       <EditableCell
                         item={item}
                         index={index}
-                        edit={{ editItem: editItem, setEditItem: setEditItem }}
+                        edit={{
+                          editItem: editItem,
+                          setEditItem: setEditItem,
+                          confirmFunc: () => {},
+                          cancleFunc: () => {},
+                        }}
                       />
                     );
                   },
@@ -325,7 +345,6 @@ function index() {
                 }}
               />
             </label>
-
             <label className="cursor-pointer label">
               <span className="label-text max-sm:text-xs">{`${t(
                 "common.scheduled"

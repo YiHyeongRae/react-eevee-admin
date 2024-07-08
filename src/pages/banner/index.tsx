@@ -89,7 +89,7 @@ function index() {
   ];
 
   const { t } = useTranslation();
-
+  console.log(bannerFile);
   return (
     <>
       <div className="grid items-center h-full grid-cols-3 gap-60 max-lg:grid-cols-1">
@@ -230,7 +230,7 @@ function index() {
               placeholder="시작날짜"
               onFocus={() => setCalendarState("start")}
               value={`${banner.startDate} ${banner.startTime}`}
-              onChange={(e) => {
+              onChange={() => {
                 // setPush((prev) => {
                 //   return { ...prev, title: e.target.value };
                 // });

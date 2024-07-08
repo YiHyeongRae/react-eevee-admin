@@ -8,7 +8,7 @@ import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { useTranslation } from "react-i18next";
 
 function index() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const dummyData = [
     {
       userName: "가",

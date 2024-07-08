@@ -1,5 +1,5 @@
 const useUserState = {
-  handler: (setter: Function) => {
+  handler: () => {
     // setter((prev: { isLoading: boolean }) => {
     //   return { ...prev, isLoading: !prev.isLoading };
     // });

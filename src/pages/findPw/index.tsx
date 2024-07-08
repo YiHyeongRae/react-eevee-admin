@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -11,8 +11,8 @@ function index() {
     i18n.changeLanguage(locales || "ko");
   }, []);
 
-  const [changePw, setChangePw] = useState(false);
-  const [isReq, setIsReq] = useState(false);
+  // const [changePw, setChangePw] = useState(false);
+  // const [isReq, setIsReq] = useState(false);
   return (
     // <div className="flex items-center justify-center w-full h-full">
     //   <div className="min-h-screen hero">
