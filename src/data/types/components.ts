@@ -26,14 +26,14 @@ type TableTypes = {
   };
   tdOptions?: {
     [key: string]: {
-      style?: string;
+      className?: string;
       func: Function;
       tooltip?: { active: boolean; text: string };
       el: Function;
     };
   };
   buttons?: {
-    style: string;
+    className: string;
     text: string;
     func: Function;
     disabled: boolean;

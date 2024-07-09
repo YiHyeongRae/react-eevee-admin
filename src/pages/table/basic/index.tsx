@@ -6,13 +6,13 @@ import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 function index() {
   const buttons = [
     {
-      style: "",
+      className: "",
       text: "추가버튼",
       func: () => {},
       disabled: false,
     },
     {
-      style: "",
+      className: "",
       text: "다른버튼",
       func: () => {
         alert("다른버튼 액션");
@@ -20,7 +20,7 @@ function index() {
       disabled: false,
     },
     {
-      style: "",
+      className: "",
       text: "또다른버튼",
       func: () => {},
       disabled: true,
@@ -56,7 +56,7 @@ function index() {
     <>
       <div>
         <div
-          className="cursor-pointer badge badge-lg badge-outline"
+          className="badge badge-outline max-sm:text-xs"
           onClick={() => setIsExpand((prev) => !prev)}
         >
           {`${t("common.code")} ${
@@ -65,51 +65,15 @@ function index() {
         </div>
       </div>
       {isExpand && (
-        <div className="grid grid-cols-2 gap-2 h-3/4">
+        <div className="grid grid-cols-1 gap-2 h-3/4">
           <SyntaxHighlighter language="tsx" style={vscDarkPlus}>
-            {`type TableTypes = {
-  data: {
-    [x: string]: string | number | boolean | string[] | number[] | boolean[];
-  }[];
-  addedMap: string[][];
-  checakble?: { active: boolean; multi: boolean; setter: Function };
-  trOptions?: {
-    thead: {
-      className: string;
-      func: Function;
-    };
-    tbody: {
-      className: string;
-      func: Function;
-    };
-  };
-  tdOptions?: {
-    [key: string]: {
-      style?: string;
-      func: Function;
-      tooltip?: { active: boolean; text: string };
-      el: Function;
-    };
-  };
-  buttons?: {
-    style: string;
-    text: string;
-    func: Function;
-    disabled: boolean;
-  }[];
-};
-        `}
-          </SyntaxHighlighter>
-          <SyntaxHighlighter language="tsx" style={vscDarkPlus}>
-            {`import { useState } from "react";
-import Table from "#/components/Table";
-import { TableTypes } from "#/data/types/components";
+            {`import Table from "#/components/Table";
 
 function index() {
   const buttons = [
     {style: "",text: "추가버튼",func: () => {},disabled: false},
-    {style: "",text: "다른버튼",func: () => {},disabled: false},
-    {style: "",text: "또다른버튼",func: () => {alert("또다른버튼 액션");},disabled: true},
+    {style: "",text: "다른버튼",func: () => { alert("다른버튼 액션"); },disabled: false},
+    {style: "",text: "또다른버튼",func: () => {},disabled: true},
   ];
   const dummyData = [
     {

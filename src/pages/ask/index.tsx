@@ -206,7 +206,7 @@ function index() {
             func: () => {},
           },
           content: {
-            style: "max-w-xs",
+            className: "max-w-xs",
             func: () => {},
             el: (item: string) => {
               return <span className="block max-w-xs truncate">{item}</span>;

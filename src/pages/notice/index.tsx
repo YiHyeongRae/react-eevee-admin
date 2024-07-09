@@ -16,7 +16,7 @@ function index() {
   };
   const buttons = [
     {
-      style: "",
+      className: "",
       text: "등록하기",
       func: () => {
         (document.getElementById("new") as HTMLFormElement).showModal();
@@ -341,7 +341,7 @@ function index() {
             func: () => {},
           },
           content: {
-            style: "max-w-xs",
+            className: "max-w-xs",
             func: () => {},
             el: (item: string) => {
               return <span className="block max-w-xs truncate">{item}</span>;

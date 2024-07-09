@@ -146,7 +146,7 @@ function index() {
 
   const buttons = [
     {
-      style: "",
+      className: "",
       text: "체크모드",
       func: () => {
         setPush((prev) => {
@@ -157,7 +157,7 @@ function index() {
       disabled: false,
     },
     {
-      style: "",
+      className: "",
       text: "푸쉬발송",
       func: () => {
         openModal("push");
@@ -165,7 +165,7 @@ function index() {
       disabled: push.ids.length === 0,
     },
     {
-      style: "",
+      className: "",
       text: "또다른버튼",
       func: () => {
         alert("또다른버튼 액션");

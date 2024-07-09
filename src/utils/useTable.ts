@@ -3,7 +3,7 @@ import {
   TableTdFunctionTypes,
   TableThFunctionTypes,
   TdObjTypes,
-} from "../data/types/components";
+} from "#/data/types/components";
 
 export const useTable = {
   makeTableTdData: ({
