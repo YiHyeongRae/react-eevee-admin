@@ -56,7 +56,7 @@ function index() {
     <>
       <div>
         <div
-          className="cursor-pointer badge badge-lg badge-outline"
+          className="badge badge-outline max-sm:text-xs"
           onClick={() => setIsExpand((prev) => !prev)}
         >
           {`${t("common.code")} ${
@@ -65,18 +65,7 @@ function index() {
         </div>
       </div>
       {isExpand && (
-        <div className="grid grid-cols-2 gap-2 h-3/4">
-          <SyntaxHighlighter language="tsx" style={vscDarkPlus}>{`
-  type EditableCellTypes = {
-    item: string;
-    index: number;
-    edit: {
-      editItem: string | number;
-      setEditItem: Function;
-      confirmFunc: Function;
-      cancleFunc: Function;
-    };
-  };`}</SyntaxHighlighter>
+        <div className="grid grid-cols-1 gap-2 h-3/4">
           <SyntaxHighlighter language="tsx" style={vscDarkPlus}>
             {`  import _ from "lodash";
   import Table from "#/components/Table";
@@ -135,6 +124,17 @@ function index() {
             }}
             data={dummyData}
             addedMap={addedMap}
+            trOptions={{
+              thead: { className: "", func: () => {} },
+              tbody: {
+                className: "",
+                func: () => {
+                  if (editItem !== "") {
+                    setEditItem("");
+                  }
+                },
+              },
+            }}
             tdOptions={{
               phone: {
                 el: (item: string, index: number) => {
@@ -180,6 +180,17 @@ function index() {
         }}
         data={dummyData}
         addedMap={addedMap}
+        trOptions={{
+          thead: { className: "", func: () => {} },
+          tbody: {
+            className: "",
+            func: () => {
+              if (editItem !== "") {
+                setEditItem("");
+              }
+            },
+          },
+        }}
         tdOptions={{
           phone: {
             el: (item: string, index: number) => {

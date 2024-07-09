@@ -42,7 +42,7 @@ function index() {
 
   const buttons = [
     {
-      style: "",
+      className: "",
       text: "궁금해요",
       func: () => {
         const copyDummyData = [...dummyData];

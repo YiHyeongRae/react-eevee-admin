@@ -13,7 +13,7 @@ function index() {
   // }
   const buttons = [
     {
-      style: "",
+      className: "",
       text: "추가버튼",
       func: () => {
         useToast({
@@ -29,7 +29,7 @@ function index() {
       disabled: false,
     },
     {
-      style: "",
+      className: "",
       text: "다른버튼",
       func: () => {
         useToast({
@@ -45,7 +45,7 @@ function index() {
       disabled: false,
     },
     {
-      style: "",
+      className: "",
       text: "또다른버튼",
       func: () => {
         alert("또다른버튼 액션");

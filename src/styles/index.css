@@ -92,3 +92,11 @@ body,
     width: 0%;
   }
 }
+
+.menu-dropdown-show:hover + ul {
+  visibility: visible;
+}
+
+.menu-dropdown-sub:hover {
+  visibility: visible;
+}

@@ -58,7 +58,7 @@ function index() {
 
   const buttons = [
     {
-      style: "",
+      className: "",
       text: "체크모드",
       func: () => {
         setCheckable((prev) => !prev);
@@ -67,7 +67,7 @@ function index() {
       disabled: false,
     },
     {
-      style: "",
+      className: "",
       text: "등록하기",
       func: () => {
         openModal("new-banner");
@@ -77,7 +77,7 @@ function index() {
       disabled: false,
     },
     {
-      style: "",
+      className: "",
       text: "삭제하기",
       func: () => {
         alert(`삭제 예정 배너 아이디\n${deleteIds.toString()}`);

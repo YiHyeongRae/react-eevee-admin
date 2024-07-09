@@ -166,13 +166,10 @@ function index({ open, data, role }: SidebarTypes) {
                   }}
                 >
                   <span
-                    className={`
-                  
-                  ${
-                    location.pathname.includes(item.key) && "menu-dropdown-show"
-                  }
-                  
-                  !rounded-none`}
+                    className={`${
+                      location.pathname.includes(item.key) &&
+                      "menu-dropdown-show"
+                    } !rounded-none`}
                   >
                     <img
                       style={{ filter: "brightness(100%)" }}
@@ -180,7 +177,7 @@ function index({ open, data, role }: SidebarTypes) {
                     />
                   </span>
                   <ul
-                    className={`menu-dropdown ps-0 ml-0 bg-[#333] overflow-hidden ${
+                    className={`menu-dropdown-sub menu-dropdown ps-0 ml-0 bg-[#333] overflow-hidden ${
                       location.pathname.includes(item.key) &&
                       "menu-dropdown-show"
                     }`}
@@ -191,11 +188,11 @@ function index({ open, data, role }: SidebarTypes) {
                       position: "fixed",
                       left: 56,
                       top: `calc(${40 * index} + 56px )`,
-                      visibility: location.pathname.includes(item.key)
-                        ? "visible"
-                        : "hidden",
+                      // visibility: location.pathname.includes(item.key)
+                      //   ? "visible"
+                      //   : "hidden",
                       opacity: location.pathname.includes(item.key) ? 1 : 0,
-                      transition: "all .3s linear",
+                      // transition: "all .3s linear",
                     }}
                   >
                     {item.sub.map((subItem, subIndex) => {
