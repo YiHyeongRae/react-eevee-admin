@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import _ from "lodash";
-import { useTable } from "../../utils/useTable";
+import { useTable } from "#/utils/useTable";
 import { TableTypes } from "#/data/types/components";
 function index({
   data = [],
@@ -11,7 +11,7 @@ function index({
     thead: { className: "", func: () => {} },
     tbody: { className: "", func: () => {} },
   },
-  buttons = [{ style: "", text: "", func: () => {}, disabled: false }],
+  buttons = [{ className: "", text: "", func: () => {}, disabled: false }],
 }: TableTypes) {
   const thMap = new Map([["index", "no"]]);
 
@@ -56,7 +56,7 @@ function index({
             return (
               <button
                 disabled={item.disabled}
-                className={`flex-wrap bg-primary btn btn-sm max-sm:btn-xs text-white ${item.style}`}
+                className={`flex-wrap bg-primary btn btn-sm max-sm:btn-xs text-white ${item.className}`}
                 key={index}
                 onClick={() => {
                   item.func();
@@ -227,7 +227,7 @@ function index({
                       <td
                         id={key}
                         key={key}
-                        className={`${tdOptions[key]?.style} ${
+                        className={`${tdOptions[key]?.className} ${
                           key === "index" || key === "userName"
                             ? ""
                             : "min-w-[11rem]"
