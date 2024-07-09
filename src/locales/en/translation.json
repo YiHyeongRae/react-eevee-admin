@@ -54,7 +54,11 @@
     "image": "Image",
     "file": "File",
     "expand": "Expand",
-    "collapse": "Collapse"
+    "collapse": "Collapse",
+    "component": "Component",
+    "types": "Types",
+    "function": "Function",
+    "copy": "Copy"
   },
   "header": {
     "mypage": "My page",
@@ -83,7 +87,8 @@
     "banner": "Banner Management",
     "table": "Table",
     "basic": "Basic",
-    "editable": "Editable"
+    "editable": "Editable",
+    "component": "Component"
   },
   "placeholder": {
     "password": "6 or more characters can be used in English, numbers, and special characters",
