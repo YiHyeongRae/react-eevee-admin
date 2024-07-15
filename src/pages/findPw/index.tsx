@@ -38,7 +38,7 @@ function index() {
     //               <input
     //                 disabled
     //                 type="text"
-    //                 placeholder="@andreia.kr"
+    //                 placeholder="@dev.kr"
     //                 className="w-[50%] input input-bordered"
     //               />
     //             </div>
@@ -85,12 +85,12 @@ function index() {
               <input
                 type="text"
                 className="input-sm max-sm:input-xs input input-bordered "
-                placeholder="admin"
+                placeholder="dev"
               />
               <input
                 disabled
                 type="text"
-                placeholder="@andreia.kr"
+                placeholder="@dev.kr"
                 className="input-sm max-sm:input-xs input input-bordered"
               />
             </label>

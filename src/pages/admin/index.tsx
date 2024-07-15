@@ -4,7 +4,7 @@ function index() {
   const dummyData = [
     {
       userName: "김혜원",
-      email: "day@andreia.kr",
+      email: "day@dev.kr",
       authority: "관리자",
       duty: "개발팀",
       lastLogin: "2024-03-14 05:15:45",
@@ -12,7 +12,7 @@ function index() {
     },
     {
       userName: "쏙닥",
-      email: "andreia@andreia.kr",
+      email: "dev@dev.kr",
       authority: "슈퍼관리자",
       duty: "개발팀",
       lastLogin: "2024-06-14 05:15:45",
@@ -20,7 +20,7 @@ function index() {
     },
     {
       userName: "변우석",
-      email: "eclipse@andreia.kr",
+      email: "eclipse@dev.kr",
       authority: "관리자",
       duty: "기획팀",
       lastLogin: "2024-09-14 05:15:45",

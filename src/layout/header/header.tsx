@@ -73,7 +73,7 @@ function index({ func, navState }: HeaderTypes) {
           </div>
           <div className="p-0 card-body max-sm:hidden">
             <h2 className="text-sm card-title">dev@dev.kr</h2>
-            <p className="text-xs">관리자 | SUPER_ADMIN</p>
+            <p className="text-xs">EEVEE | SUPER_ADMIN</p>
           </div>
 
           <div className="flex items-center dropdown dropdown-left">
@@ -255,7 +255,7 @@ function index({ func, navState }: HeaderTypes) {
                     <input
                       type="text"
                       className="col-span-2 bg-base-100 input input-bordered input-sm max-sm:input-xs"
-                      placeholder="Andreia"
+                      placeholder={t("common.name")}
                     />
                   </label>
                   <label className="grid items-center grid-cols-3 col-span-2 gap-2">
@@ -266,7 +266,7 @@ function index({ func, navState }: HeaderTypes) {
                     <input
                       type="text"
                       className="col-span-2 bg-base-100 input input-bordered input-sm max-sm:input-xs"
-                      placeholder="admin@andreia.kr"
+                      placeholder="dev@dev.kr"
                     />
                   </label>
 
@@ -316,7 +316,7 @@ function index({ func, navState }: HeaderTypes) {
           </div>
           <div className="flex w-full">
             <div className="w-full mt-4 bg-base-100">
-              <div className="flex-col h-full lg:flex-row-revers">
+              <div className="flex flex-col justify-between h-full lg:flex-row-revers">
                 <div className="grid grid-cols-2 gap-4">
                   <label className="grid items-center grid-cols-3 col-span-2 gap-2">
                     <span className="col-span-1 col-start-1">
@@ -338,25 +338,24 @@ function index({ func, navState }: HeaderTypes) {
                       placeholder={t("placeholder.password")}
                     />
                   </label>
-
-                  <div className="grid grid-cols-2 col-span-2 gap-2 mt-6 items-between">
-                    <div className="form-control">
-                      <button
-                        disabled
-                        className="btn btn-sm max-sm:btn-xs btn-primary"
-                      >
-                        {`${t("common.password")} ${t("common.change")}`}
-                      </button>
-                    </div>
-                    <label className="flex items-center gap-2">
-                      <button
-                        className="w-full btn btn-sm max-sm:btn-xs btn-primary"
-                        onClick={() => setChangePw(false)}
-                      >
-                        {t("common.cancle")}
-                      </button>
-                    </label>
+                </div>
+                <div className="grid grid-cols-2 col-span-2 gap-2 mt-6 items-between">
+                  <div className="form-control">
+                    <button
+                      disabled
+                      className="btn btn-sm max-sm:btn-xs btn-primary"
+                    >
+                      {`${t("common.password")} ${t("common.change")}`}
+                    </button>
                   </div>
+                  <label className="flex items-center gap-2">
+                    <button
+                      className="w-full btn btn-sm max-sm:btn-xs btn-primary"
+                      onClick={() => setChangePw(false)}
+                    >
+                      {t("common.cancle")}
+                    </button>
+                  </label>
                 </div>
               </div>
             </div>

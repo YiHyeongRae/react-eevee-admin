@@ -71,7 +71,7 @@
     "find": "비밀번호 찾기"
   },
   "sidebar": {
-    "logoTitle": "Andreia Admin",
+    "logoTitle": "Admin",
     "dashboard": "대시보드",
     "user": "회원 관리",
     "mental": "심리검사 데이터",
@@ -87,8 +87,12 @@
     "banner": "배너 관리",
     "table": "테이블",
     "basic": "기본",
-    "editable": "수정 가능",
-    "component": "컴포넌트"
+    "editable": "수정가능",
+    "component": "컴포넌트",
+    "checkable": "체크박스",
+    "modal": "모달",
+    "function": "함수",
+    "withModal": "모달 테이블"
   },
   "placeholder": {
     "password": "6자리이상 영문,숫자,특수문자 가능",

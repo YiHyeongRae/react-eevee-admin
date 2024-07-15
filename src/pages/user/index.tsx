@@ -7,8 +7,11 @@ import Calendar from "../../components/Calendar";
 import TimePicker from "../../components/TimePicker";
 import { closeModal, openModal } from "../../utils/useModalHandler";
 import { useTranslation } from "react-i18next";
+import useMatchMediaQuery from "#/utils/useMatchMediaQuery";
 
 function index() {
+  const isMaxSm = useMatchMediaQuery("not all and (min-width: 640px)");
+
   const dummyData = [
     {
       userName: "가",
@@ -19,7 +22,7 @@ function index() {
       major: "헬스케어",
       studentId: "24-00001",
       status: "Approved",
-      email: "gggg@andreia.kr",
+      email: "gggg@dev.kr",
     },
     {
       userName: "나",
@@ -30,7 +33,7 @@ function index() {
       major: "헬스케어",
       studentId: "24-00002",
       status: "Banned",
-      email: "gggg@andreia.kr",
+      email: "gggg@dev.kr",
     },
     {
       userName: "다",
@@ -41,7 +44,7 @@ function index() {
       major: "헬스케어",
       studentId: "24-00002",
       status: "Banned",
-      email: "gggg@andreia.kr",
+      email: "gggg@dev.kr",
     },
     {
       userName: "라",
@@ -52,7 +55,7 @@ function index() {
       major: "헬스케어",
       studentId: "24-00002",
       status: "Banned",
-      email: "gggg@andreia.kr",
+      email: "gggg@dev.kr",
     },
     {
       userName: "마",
@@ -61,7 +64,7 @@ function index() {
       createdAt: "2024-05-06 12:46:09",
       school: "안드레이아대학교",
       major: "헬스케어",
-      email: "gggg@andreia.kr",
+      email: "gggg@dev.kr",
       studentId: "24-00002",
       status: "Banned",
     },
@@ -74,7 +77,7 @@ function index() {
       major: "헬스케어",
       studentId: "24-00002",
       status: "Banned",
-      email: "gggg@andreia.kr",
+      email: "gggg@dev.kr",
     },
     {
       userName: "사",
@@ -85,7 +88,7 @@ function index() {
       major: "헬스케어",
       studentId: "24-00002",
       status: "Banned",
-      email: "gggg@andreia.kr",
+      email: "gggg@dev.kr",
     },
   ];
   const addedMap = [
@@ -380,7 +383,7 @@ function index() {
                   }}
                 />
                 <TimePicker
-                  fixedHeight="h-[120px]"
+                  fixedHeight={isMaxSm ? "h-[96px]" : "h-[120px]"}
                   type="full"
                   select={{
                     selected: { ampm: "", hour: "", minute: "" },

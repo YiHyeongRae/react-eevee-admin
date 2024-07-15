@@ -6,10 +6,10 @@ function index() {
   const { t, i18n } = useTranslation();
   const isLogin = localStorage.getItem("login") === "true";
   if (isLogin) {
-    return <Navigate to="/dashboard" />;
+    return <Navigate to="/table/component" />;
   }
 
-  const [login, setLogin] = useState({ id: "", pw: "" });
+  const [login, setLogin] = useState({ id: "dev", pw: "1234" });
   useEffect(() => {
     const locales = localStorage.getItem("admin-locales");
 
@@ -45,7 +45,7 @@ function index() {
                 <input
                   disabled
                   type="text"
-                  placeholder="@andreia.kr"
+                  placeholder="@dev.kr"
                   className="w-[50%] input input-bordered"
                 />
               </div>
