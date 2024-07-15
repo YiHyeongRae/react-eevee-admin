@@ -100,3 +100,11 @@ body,
 .menu-dropdown-sub:hover {
   visibility: visible;
 }
+:where(
+    .menu li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)
+  ):not(.active, .btn):hover,
+:where(
+    .menu li:not(.menu-title, .disabled) > details > summary:not(.menu-title)
+  ):not(.active, .btn):hover {
+  background-color: var(--fallback-p, oklch(var(--p) / 0.7));
+}
