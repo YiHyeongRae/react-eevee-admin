@@ -18,7 +18,7 @@ function index({ open, data, role }: SidebarTypes) {
           {/* Logo 로고 */}
           <li
             onClick={() => {
-              navigate("/dashboard");
+              navigate("/table/component");
             }}
             className="pt-2 pb-2"
           >
@@ -43,13 +43,18 @@ function index({ open, data, role }: SidebarTypes) {
                     navigate(item.path);
                   }}
                   className={`${
-                    location.pathname.includes(item.key) && "bg-primary"
+                    location.pathname.includes(item.key) &&
+                    "bg-primary text-[#333]"
                   }`}
                 >
-                  <span className={`text-[#fff] !rounded-none`}>
+                  <span className={`!rounded-none`}>
                     <span className="w-6 max-sm:w-4">
                       <img
-                        style={{ filter: "brightness(100%)" }}
+                        style={{
+                          filter: location.pathname.includes(item.key)
+                            ? "brightness(0%)"
+                            : "brightness(100%)",
+                        }}
                         src={`/icons/${item.key}.svg`}
                       />
                     </span>
@@ -106,7 +111,7 @@ function index({ open, data, role }: SidebarTypes) {
                           <span
                             className={`${
                               location.pathname.includes(subItem.path) &&
-                              "bg-primary"
+                              "bg-primary text-[#333]"
                             } pt-[10px] pb-[10px] max-sm:pt-[8px] max-sm:pb-[8px] justify-end !rounded-none`}
                           >
                             <a className="text-sm max-sm:text-xs ">
@@ -127,7 +132,7 @@ function index({ open, data, role }: SidebarTypes) {
           {/* Logo 로고 */}
           <li
             onClick={() => {
-              navigate("/dashboard");
+              navigate("/table/component");
             }}
             className="pt-2 pb-2"
           >
@@ -148,10 +153,11 @@ function index({ open, data, role }: SidebarTypes) {
                     navigate(item.path);
                   }}
                   className={`${
-                    location.pathname.includes(item.key) && "bg-primary"
+                    location.pathname.includes(item.key) &&
+                    "bg-primary text-[#333]"
                   }`}
                 >
-                  <span className={`text-[#fff] !rounded-none`}>
+                  <span className={`!rounded-none`}>
                     <img
                       style={{ filter: "brightness(100%)" }}
                       src={`/icons/${item.key}.svg`}
@@ -207,7 +213,7 @@ function index({ open, data, role }: SidebarTypes) {
                           <span
                             className={`${
                               location.pathname.includes(subItem.path) &&
-                              "bg-primary"
+                              "bg-primary text-[#333]"
                             } pt-[12px] pb-[12px] justify-end !rounded-none`}
                           >
                             <a className="text-xs">
