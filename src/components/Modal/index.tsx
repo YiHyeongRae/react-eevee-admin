@@ -17,6 +17,7 @@ function Modal({ id, className, children, closeFunc, open }: ModalTypes) {
         <form method="dialog">
           {/* if there is a button in form, it will close the modal */}
           <button
+            id={`${id}-close-btn`}
             className="absolute btn btn-sm max-sm:btn-xs btn-circle btn-ghost right-4 top-5"
             onClick={() => {
               closeFunc && closeFunc();
@@ -34,12 +35,12 @@ function ModalOpener({
   id,
   children,
   // disabled,
-  style,
+  className,
   func,
 }: ModalOpenerTypes) {
   return (
     <div
-      className={`${style}`}
+      className={`${className}`}
       // disabled={disabled}
       onClick={() => {
         (document.getElementById(id) as HTMLFormElement).showModal();
