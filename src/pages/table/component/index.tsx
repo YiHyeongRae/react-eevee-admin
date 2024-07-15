@@ -141,10 +141,6 @@ function index({
 
       <div
         className="overflow-x-auto"
-        style={{
-        //   maxHeight: "calc(100% - 114px)",
-        //   minHeight: "calc(100% - 114px)",
-        }}
       >
         <table className="table table-s max-sm:table-xs table-pin-rows table-pin-cols">
           <thead>

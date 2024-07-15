@@ -46,7 +46,7 @@ function index({
 
   useEffect(() => {
     setTableChecked([]);
-  }, [checakble.active]);
+  }, [checakble.active, checakble.multi]);
 
   return (
     <div className="h-full col-span-2">
@@ -87,6 +87,7 @@ function index({
                 <td>
                   <label className="flex">
                     <input
+                      disabled={!checakble.multi}
                       type="checkbox"
                       className="checkbox max-sm:checkbox-sm"
                       checked={
@@ -215,6 +216,16 @@ function index({
                               );
                               isChecekd.splice(targetIndex, 1);
                             }
+
+                            if (!checakble.multi) {
+                              if (e.currentTarget.checked) {
+                                isChecekd.splice(0, 1);
+                                isChecekd[0] = item.index as number;
+                              } else {
+                                isChecekd.splice(0, 1);
+                              }
+                            }
+                            console.log("isChecekd", isChecekd);
                             setTableChecked(isChecekd);
                             checakble.setter(isChecekd);
                           }}
