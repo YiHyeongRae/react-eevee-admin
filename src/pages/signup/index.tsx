@@ -25,7 +25,7 @@ function index() {
               <input
                 type="text"
                 className="grow bg-base-100 input input-bordered input-sm max-sm:input-xs"
-                placeholder="Andreia"
+                placeholder={t("common.name")}
               />
             </label>
             <label className="flex items-center gap-2 ">
@@ -33,7 +33,7 @@ function index() {
               <input
                 type="text"
                 className="grow input input-bordered input-sm max-sm:input-xs"
-                placeholder="admin@andreia.kr"
+                placeholder="dev@dev.kr"
               />
             </label>
             <label className="flex items-center gap-2">
@@ -59,14 +59,6 @@ function index() {
                 <option>{t("common.admin")}</option>
                 <option>{t("common.superAdmin")}</option>
               </select>
-            </label>
-            <label className="flex items-center gap-2 ">
-              <span className="flex min-w-32">{t("common.role")}</span>
-              <input
-                type="text"
-                className="grow input input-bordered input-sm max-sm:input-xs"
-                placeholder={t("placeholder.option")}
-              />
             </label>
 
             <div className="mt-6 form-control">

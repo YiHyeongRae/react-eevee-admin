@@ -1,7 +1,6 @@
 import _ from "lodash";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import useMatchMediaQuery from "../../utils/useMatchMediaQuery";
 import { TimePickerTypes } from "../../data/types/components";
 
 function index({
@@ -25,8 +24,9 @@ function index({
 
   const { t } = useTranslation();
 
-  const isMaxSm = useMatchMediaQuery("not all and (min-width: 640px)");
-
+  const heightRegex = /\[([^\]]+)\]/g;
+  const regexResult = heightRegex.exec(fixedHeight);
+  const pickerHeight = regexResult !== null && regexResult[1].replace("px", "");
   return (
     <div className={`flex flex-col ${fixedHeight}`}>
       <div className="flex-none mb-2 text-center">
@@ -55,10 +55,10 @@ function index({
 
                   if (
                     parentEl &&
-                    parentEl?.scrollTop !== item * (isMaxSm ? 32 : 36)
+                    parentEl?.scrollTop !== item * (Number(pickerHeight) / 3)
                   ) {
                     parentEl.scrollTo({
-                      top: item * (isMaxSm ? 32 : 36),
+                      top: item * (Number(pickerHeight) / 3),
                       behavior: "smooth",
                     });
                   }
@@ -95,10 +95,10 @@ function index({
 
                   if (
                     parentEl &&
-                    parentEl?.scrollTop !== item * (isMaxSm ? 32 : 36)
+                    parentEl?.scrollTop !== item * (Number(pickerHeight) / 3)
                   ) {
                     parentEl.scrollTo({
-                      top: item * (isMaxSm ? 32 : 36),
+                      top: item * (Number(pickerHeight) / 3),
                       behavior: "smooth",
                     });
                   }

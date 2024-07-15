@@ -8,7 +8,7 @@ function index() {
     {
       category: "궁금해요",
       userName: "변우석",
-      email: "eclipse@andreia.kr",
+      email: "eclipse@dev.kr",
       title: "탕탕후루후루",
       content:
         "이빨이 후루루루루루 이빨이 후루루루루루 이빨이 후루루루루루 이빨이 후루루루루루 이빨이 후루루루루루 이빨이 후루루루루루 이빨이 후루루루루루 이빨이 후루루루루루",
@@ -27,7 +27,7 @@ function index() {
     {
       category: "인증해요",
       userName: "김혜원",
-      email: "runaway@andreia.kr",
+      email: "runaway@dev.kr",
       title: "업튀업튀",
       content: "뛰엇",
       images: ["김혜원의 1범이미지의 URL", "김혜원의 2범이미지의 URL"],

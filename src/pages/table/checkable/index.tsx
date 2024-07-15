@@ -4,29 +4,37 @@ import { useTranslation } from "react-i18next";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 function index() {
+  const [isMulti, setMulti] = useState(false);
+  const [targetIndex, setTargetIndex] = useState([]);
   const buttons = [
     {
       className: "",
-      text: "추가버튼",
-      func: () => {},
-      disabled: false,
+      text: "멀티 체크",
+      func: () => {
+        setMulti(true);
+        setTargetIndex([]);
+      },
+      disabled: isMulti,
     },
     {
       className: "",
-      text: "다른버튼",
+      text: "단일 체크",
       func: () => {
-        alert("다른버튼 액션");
+        setMulti(false);
+        setTargetIndex([]);
+      },
+      disabled: !isMulti,
+    },
+    {
+      className: "",
+      text: "체크 인덱스",
+      func: () => {
+        alert(`${targetIndex}`);
       },
       disabled: false,
     },
-    {
-      className: "",
-      text: "또다른버튼",
-      func: () => {},
-      disabled: true,
-    },
   ];
-  const dummyData = [
+  const [dummyData] = useState([
     {
       userName: "가가가",
       job: "코더",
@@ -41,7 +49,7 @@ function index() {
       location: "서울",
       lastLogin: "2024-05-07 19:42:23",
     },
-  ];
+  ]);
 
   const addedMap = [
     ["userName", "이름"],
@@ -70,44 +78,52 @@ function index() {
             {`import Table from "#/components/Table";
 
 function index() {
+  const [isMulti, setMulti] = useState(false);
+  const [targetIndex, setTargetIndex] = useState([]);
   const buttons = [
-    {
-      className: "",
-      text: "추가버튼",
-      func: () => {},
-      disabled: false,
-    },
-    {
-      className: "",
-      text: "다른버튼",
-      func: () => {
-        alert("다른버튼 액션");
+      {
+        className: "",
+        text: "멀티 체크",
+        func: () => {
+            setMulti(true);
+            setTargetIndex([])
+          },
+        disabled: isMulti,
       },
-      disabled: false,
-    },
+      {
+        className: "",
+        text: "단일 체크",
+        func: () => {
+              setMulti(false);
+              setTargetIndex([])
+          },
+        disabled: !isMulti,
+      },
+      {
+        className: "",
+        text: "체크 인덱스",
+        func: () => {
+              alert(\`\${targetIndex}\`);
+          },
+        disabled: false,
+      },
+    ];
+  const [dummyData] = useState([
     {
-      className: "",
-      text: "또다른버튼",
-      func: () => {},
-      disabled: true,
-    },
-  ];
-  const dummyData = [
-    {
-      userName: "가",
-      job: "직업",
+      userName: "가가가",
+      job: "코더",
       company: "컴패니",
       location: "집",
       lastLogin: "2024-05-01 00:23:11",
     },
     {
-      userName: "나",
+      userName: "나나나",
       job: "커피알바생",
       company: "메가커피",
       location: "서울",
       lastLogin: "2024-05-07 19:42:23",
     },
-  ];
+  ]);
   
   const addedMap = [
     ["userName", "이름"],
@@ -118,7 +134,12 @@ function index() {
   ];
   
   return (
-      <Table buttons={buttons} data={dummyData} addedMap={addedMap} />
+    <Table
+        checakble={{ active: true, multi: isMulti, setter: setTargetIndex }}
+        buttons={buttons}
+        data={dummyData}
+        addedMap={addedMap}
+      />
   );
 }
 
@@ -126,7 +147,12 @@ export default index;`}
           </SyntaxHighlighter>
         </div>
       )}
-      <Table buttons={buttons} data={dummyData} addedMap={addedMap} />
+      <Table
+        checakble={{ active: true, multi: isMulti, setter: setTargetIndex }}
+        buttons={buttons}
+        data={dummyData}
+        addedMap={addedMap}
+      />
     </>
   );
 }

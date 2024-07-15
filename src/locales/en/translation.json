@@ -71,7 +71,7 @@
     "find": "Forget Password?"
   },
   "sidebar": {
-    "logoTitle": "Andreia Admin",
+    "logoTitle": "Admin",
     "dashboard": "Dashboard",
     "user": "User Management",
     "mental": "Mental Data",
@@ -88,7 +88,11 @@
     "table": "Table",
     "basic": "Basic",
     "editable": "Editable",
-    "component": "Component"
+    "component": "Component",
+    "checkable": "Checkable",
+    "modal": "Modal",
+    "function": "Function",
+    "withModal": "withModal"
   },
   "placeholder": {
     "password": "6 or more characters can be used in English, numbers, and special characters",

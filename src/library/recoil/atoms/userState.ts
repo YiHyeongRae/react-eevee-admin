@@ -5,7 +5,7 @@ const initialState = {
   registerNo: "",
   refreshToken: "",
   accessToken: "",
-  email: "dev@andreia.kr",
+  email: "dev@dev.kr",
   role: "SUPER_ADMIN",
 };
 

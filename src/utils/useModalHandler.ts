@@ -3,7 +3,8 @@ export function openModal(id: string) {
 }
 
 export function closeModal(id: string) {
-  const closeButton = (document.getElementById(id) as HTMLFormElement)
-    .children[0].children[2].children[0] as HTMLButtonElement;
+  const closeButton = document.getElementById(
+    `${id}-close-btn`
+  ) as HTMLFormElement;
   closeButton.click();
 }

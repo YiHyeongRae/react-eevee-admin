@@ -1,11 +1,11 @@
 const SideBarData = [
-  {
-    title: "대시보드",
-    path: "/dashboard",
-    key: "dashboard",
-    sub: [],
-    access: ["ADMIN", "SUPER_ADMIN"],
-  },
+  // {
+  //   title: "대시보드",
+  //   path: "/dashboard",
+  //   key: "dashboard",
+  //   sub: [],
+  //   access: ["ADMIN", "SUPER_ADMIN"],
+  // },
   // {
   //   title: "배너 관리",
   //   path: "/banner",
@@ -88,7 +88,20 @@ const SideBarData = [
     sub: [
       { title: "컴포넌트", key: "component", path: "/table/component" },
       { title: "기본", key: "basic", path: "/table/basic" },
-      { title: "수정 가능한 셀", key: "editable", path: "/table/editable" },
+      { title: "수정 가능", key: "editable", path: "/table/editable" },
+      { title: "체크", key: "checkable", path: "/table/checkable" },
+      { title: "모달 테이블", key: "withModal", path: "/table/withModal" },
+    ],
+    access: ["ADMIN", "SUPER_ADMIN"],
+  },
+  {
+    title: "모달",
+    path: "/modal/component",
+    key: "modal",
+    sub: [
+      { title: "컴포넌트", key: "component", path: "/modal/component" },
+      { title: "기본", key: "basic", path: "/modal/basic" },
+      { title: "함수", key: "function", path: "/modal/function" },
     ],
     access: ["ADMIN", "SUPER_ADMIN"],
   },

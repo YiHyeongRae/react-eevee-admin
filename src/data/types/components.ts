@@ -67,7 +67,7 @@ type ModalTypes = {
 };
 
 type ModalOpenerTypes = {
-  style?: string;
+  className?: string;
   id: string;
   children: ReactNode;
   func?: Function;

@@ -152,7 +152,7 @@ function index() {
                       <input
                         type="text"
                         className="col-span-2 bg-base-100 input input-bordered input-sm max-sm:input-xs"
-                        placeholder="Andreia"
+                        placeholder="dev"
                         onChange={() => {}}
                       />
                     </label>
@@ -226,7 +226,7 @@ function index() {
                       <input
                         type="text"
                         className="col-span-2 bg-base-100 input input-bordered input-sm max-sm:input-xs"
-                        placeholder="Andreia"
+                        placeholder="dev"
                         value={dummyData[Number(modalId)].title}
                         onChange={() => {}}
                       />
