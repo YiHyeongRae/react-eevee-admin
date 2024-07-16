@@ -10,7 +10,14 @@ type CarouselTyees = {
 
 type TableTypes = {
   data: {
-    [x: string]: string | number | boolean | string[] | number[] | boolean[];
+    [x: string]:
+      | string
+      | number
+      | boolean
+      | string[]
+      | number[]
+      | boolean[]
+      | {};
   }[];
   addedMap: string[][];
   checakble?: { active: boolean; multi: boolean; setter: Function };
@@ -42,7 +49,14 @@ type TableTypes = {
 
 type TableTdFunctionTypes = {
   array: {
-    [x: string]: string | number | boolean | string[] | number[] | boolean[];
+    [x: string]:
+      | string
+      | number
+      | boolean
+      | string[]
+      | number[]
+      | boolean[]
+      | {};
   }[];
   setter: Function;
   perPage: number;
@@ -55,7 +69,7 @@ type TableThFunctionTypes = {
 };
 
 type TdObjTypes = {
-  [x: string]: string | number | boolean | string[] | number[] | boolean[];
+  [x: string]: string | number | boolean | string[] | number[] | boolean[] | {};
 };
 
 type ModalTypes = {
