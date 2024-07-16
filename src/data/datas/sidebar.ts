@@ -91,6 +91,7 @@ const SideBarData = [
       { title: "수정 가능", key: "editable", path: "/table/editable" },
       { title: "체크", key: "checkable", path: "/table/checkable" },
       { title: "모달 테이블", key: "withModal", path: "/table/withModal" },
+      { title: "커스텀 셀 테이블", key: "custom", path: "/table/custom" },
     ],
     access: ["ADMIN", "SUPER_ADMIN"],
   },
