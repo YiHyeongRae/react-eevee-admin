@@ -136,9 +136,9 @@ function index({
               onClick={(e) => {
                 const parentEl = e.currentTarget.parentElement;
 
-                if (parentEl && parentEl?.scrollTop !== item * 40) {
+                if (parentEl && parentEl?.scrollTop !== item * (Number(pickerHeight) / 3)) {
                   parentEl.scrollTo({
-                    top: item * 40,
+                    top: item * (Number(pickerHeight) / 3),
                     behavior: "smooth",
                   });
                 }
@@ -188,9 +188,12 @@ function index({
               onClick={(e) => {
                 const parentEl = e.currentTarget.parentElement;
 
-                if (parentEl && parentEl?.scrollTop !== 40) {
+                if (
+                  parentEl &&
+                  parentEl?.scrollTop !== Number(pickerHeight) / 3
+                ) {
                   parentEl.scrollTo({
-                    top: 40,
+                    top: Number(pickerHeight) / 3,
                     behavior: "smooth",
                   });
                 }
