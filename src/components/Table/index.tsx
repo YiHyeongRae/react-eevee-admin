@@ -17,7 +17,7 @@ function index({
 
   const [tableThData, setTableThData] = useState(thMap);
   const [tableTdData, setTableTdData] = useState<
-    { [x: string]: string | number }[][]
+    { [x: string]: string | number | {} }[][]
   >([]);
   const [addedMapData] = useState(addedMap);
   const [tabelCkecked, setTableChecked] = useState<number[]>([]);

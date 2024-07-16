@@ -92,7 +92,8 @@
     "checkable": "Checkable",
     "modal": "Modal",
     "function": "Function",
-    "withModal": "withModal"
+    "withModal": "withModal",
+    "custom": "Custom"
   },
   "placeholder": {
     "password": "6 or more characters can be used in English, numbers, and special characters",
