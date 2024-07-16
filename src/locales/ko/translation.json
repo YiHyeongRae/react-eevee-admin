@@ -92,7 +92,8 @@
     "checkable": "체크박스",
     "modal": "모달",
     "function": "함수",
-    "withModal": "모달 테이블"
+    "withModal": "모달 테이블",
+    "custom": "커스텀 테이블"
   },
   "placeholder": {
     "password": "6자리이상 영문,숫자,특수문자 가능",
