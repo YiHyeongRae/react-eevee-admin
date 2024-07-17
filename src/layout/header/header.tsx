@@ -68,7 +68,7 @@ function index({ func, navState }: HeaderTypes) {
         <div className="flex items-center grid-cols-2 gap-2 max-sm:grid">
           <div className="col-span-1 avatar placeholder">
             <div className="w-6 rounded-full bg-primary">
-              <span className="text-xs text-white">Yi</span>
+              <span className="text-xs text-white">EV</span>
             </div>
           </div>
           <div className="p-0 card-body max-sm:hidden">

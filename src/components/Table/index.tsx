@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import _ from "lodash";
 import { useTable } from "#/utils/useTable";
-import { TableTypes } from "#/data/types/components";
+import { TableTypes, TdObjTypes } from "#/data/types/components";
+
 function index({
   data = [],
   addedMap = [["", ""]],
@@ -16,10 +17,8 @@ function index({
   const thMap = new Map([["index", "no"]]);
 
   const [tableThData, setTableThData] = useState(thMap);
-  const [tableTdData, setTableTdData] = useState<
-    { [x: string]: string | number | {} }[][]
-  >([]);
-  const [addedMapData] = useState(addedMap);
+  const [tableTdData, setTableTdData] = useState<TdObjTypes[][]>([]);
+  const [addedMapData, setAddedMapData] = useState(addedMap);
   const [tabelCkecked, setTableChecked] = useState<number[]>([]);
 
   const perPageList = [10, 20, 30];
@@ -28,6 +27,11 @@ function index({
   const [currentPage, setCurrentPage] = useState(0);
   const [orderBy, setOrderBy] = useState<"ASC" | "DESC">("DESC");
   const [currentOrderBy, setCurrentOrderBy] = useState("index");
+  const [drag, setDrag] = useState({
+    start: "",
+    end: "",
+    beforeChanged: "",
+  });
 
   useEffect(() => {
     useTable.makeTableThData({
@@ -47,11 +51,10 @@ function index({
   useEffect(() => {
     setTableChecked([]);
   }, [checakble.active, checakble.multi]);
-
   return (
     <div className="h-full col-span-2">
       <div className="flex justify-end gap-2 mb-2">
-        {buttons[0].text !== "" &&
+        {buttons[0]?.text !== "" &&
           buttons.map((item, index) => {
             return (
               <button
@@ -69,7 +72,7 @@ function index({
       </div>
 
       <div
-        className="overflow-x-auto"
+        className="overflow-x-auto "
         style={{
           maxHeight: "calc(100% - 114px)",
           minHeight: "calc(100% - 114px)",
@@ -78,13 +81,13 @@ function index({
         <table className="table table-s max-sm:table-xs table-pin-rows table-pin-cols">
           <thead>
             <tr
-              className={`${trOptions.thead.className}  border-zinc-400`}
+              className={`${trOptions.thead.className} border-zinc-400`}
               onClick={() =>
                 trOptions?.thead.func !== undefined && trOptions.thead.func()
               }
             >
               {checakble.active && (
-                <td>
+                <td className="border">
                   <label className="flex">
                     <input
                       disabled={!checakble.multi}
@@ -114,7 +117,61 @@ function index({
 
               {Array.from(tableThData.keys())?.map((item, index) => {
                 return (
-                  <td key={`${item}-${index}`}>
+                  <td
+                    className="border"
+                    key={`${item}-${index}`}
+                    draggable={item !== "index"}
+                    onDragStart={(e) => {
+                      const text = e.currentTarget.children[0]
+                        .children[0] as HTMLElement;
+                      setDrag((prev) => {
+                        return {
+                          ...prev,
+                          start: text.innerText,
+                        };
+                      });
+                    }}
+                    onDragEnter={(e) => {
+                      const text = e.currentTarget.children[0]
+                        .children[0] as HTMLElement;
+                      setDrag((prev) => {
+                        return {
+                          ...prev,
+                          beforeChanged: text.innerText,
+                        };
+                      });
+                      const throttledDrager = _.throttle(() => {
+                        if (
+                          drag.start !== "no" &&
+                          drag.start !== "" &&
+                          text.innerText !== "" &&
+                          text.innerText !== "no" &&
+                          drag.beforeChanged !== text.innerText
+                        ) {
+                          const copy = [...addedMapData];
+                          const startIndex = copy.findIndex((subArr) =>
+                            subArr.includes(drag.start)
+                          );
+                          const endIndex = copy.findIndex((subArr) =>
+                            subArr.includes(text.innerText)
+                          );
+
+                          copy[startIndex] = addedMapData[endIndex];
+                          copy[endIndex] = addedMapData[startIndex];
+
+                          setAddedMapData(copy);
+                        }
+                      }, 3000);
+
+                      throttledDrager();
+                    }}
+                    onDragOver={(e) => {
+                      e.preventDefault();
+                    }}
+                    onDragEnd={() => {
+                      setDrag({ start: "", end: "", beforeChanged: "" });
+                    }}
+                  >
                     <div
                       className={`flex items-center gap-2 ${
                         currentOrderBy === item ? "text-primary" : ""
@@ -152,7 +209,7 @@ function index({
                       <div
                         className={`cursor-pointer text-base ${
                           currentOrderBy === item ? "text-primary" : ""
-                        }`}
+                        } max-sm:text-sm`}
                       >
                         {tableThData.get(item)}
                       </div>
@@ -245,7 +302,7 @@ function index({
                         }`}
                         onClick={(e) => {
                           e.preventDefault();
-                          tdOptions[key]?.func && tdOptions[key]?.func();
+                          tdOptions[key]?.func && tdOptions[key]?.func!();
                           checakble.active &&
                             checkboxRef.current[item.index as number]?.click();
                         }}
@@ -263,7 +320,7 @@ function index({
                           }
                         >
                           {tdOptions[key]?.el
-                            ? tdOptions[key]?.el(value, index)
+                            ? tdOptions[key]?.el!(value, index)
                             : value}
                         </div>
                       </td>

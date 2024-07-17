@@ -73,6 +73,7 @@ function index() {
 import _ from "lodash";
 import { useTable } from "#/utils/useTable";
 import { TableTypes } from "#/data/types/components";
+
 function index({
   data = [],
   addedMap = [["", ""]],
@@ -87,10 +88,8 @@ function index({
   const thMap = new Map([["index", "no"]]);
 
   const [tableThData, setTableThData] = useState(thMap);
-  const [tableTdData, setTableTdData] = useState<
-    { [x: string]: string | number }[][]
-  >([]);
-  const [addedMapData] = useState(addedMap);
+  const [tableTdData, setTableTdData] = useState<TdObjTypes[]>([]);
+  const [addedMapData, setAddedMapData] = useState(addedMap);
   const [tabelCkecked, setTableChecked] = useState<number[]>([]);
 
   const perPageList = [10, 20, 30];
@@ -99,6 +98,10 @@ function index({
   const [currentPage, setCurrentPage] = useState(0);
   const [orderBy, setOrderBy] = useState<"ASC" | "DESC">("DESC");
   const [currentOrderBy, setCurrentOrderBy] = useState("index");
+  const [drag, setDrag] = useState({
+    start: "",
+    end: "",
+  });
 
   useEffect(() => {
     useTable.makeTableThData({
@@ -117,7 +120,7 @@ function index({
 
   useEffect(() => {
     setTableChecked([]);
-  }, [checakble.active]);
+  }, [checakble.active, checakble.multi]);
 
   return (
     <div className="h-full col-span-2">
@@ -127,7 +130,7 @@ function index({
             return (
               <button
                 disabled={item.disabled}
-                className={\`flex-wrap bg-primary btn btn-sm max-sm:btn-xs text-white \${item.className}\`}
+                className={\`flex-wrap bg-primary btn btn-sm max-sm:btn-xs text-white $\{item.className}\`}
                 key={index}
                 onClick={() => {
                   item.func();
@@ -141,6 +144,10 @@ function index({
 
       <div
         className="overflow-x-auto"
+        style={{
+          maxHeight: "calc(100% - 114px)",
+          minHeight: "calc(100% - 114px)",
+        }}
       >
         <table className="table table-s max-sm:table-xs table-pin-rows table-pin-cols">
           <thead>
@@ -151,9 +158,10 @@ function index({
               }
             >
               {checakble.active && (
-                <td>
+                <td className="border">
                   <label className="flex">
                     <input
+                      disabled={!checakble.multi}
                       type="checkbox"
                       className="checkbox max-sm:checkbox-sm"
                       checked={
@@ -180,9 +188,54 @@ function index({
 
               {Array.from(tableThData.keys())?.map((item, index) => {
                 return (
-                  <td key={\`\${item}-\${index}\`}>
+                  <td
+                    className="border"
+                    key={\`\${item}-\${index}\`}
+                    draggable
+                    onDragStart={(e) => {
+                      const text = e.currentTarget.children[0]
+                        .children[0] as HTMLElement;
+                      setDrag((prev) => {
+                        return { ...prev, start: text.innerText };
+                      });
+                    }}
+                    onDragEnter={(e) => {
+                      const throttledDrager = _.throttle(() => {
+                        const text = e.currentTarget.children[0]
+                          .children[0] as HTMLElement;
+
+                        if (
+                          drag.start !== "no" &&
+                          drag.start !== "" &&
+                          text.innerText !== "" &&
+                          text.innerText !== "no"
+                        ) {
+                          const copy = [...addedMapData];
+                          const startIndex = copy.findIndex((subArr) =>
+                            subArr?.includes(drag.start)
+                          );
+                          const endIndex = copy.findIndex((subArr) =>
+                            subArr.includes(text.innerText)
+                          );
+
+                          copy[startIndex] = addedMapData[endIndex];
+                          copy[endIndex] = addedMapData[startIndex];
+
+                          setAddedMapData(copy);
+                        }
+                      }, 3000);
+
+                      throttledDrager();
+                    }}
+                    onDragOver={(e) => {
+                      e.preventDefault();
+                    }}
+                    onDragEnd={() => {
+                      setDrag({ start: "", end: "" });
+                    }}
+                  >
                     <div
-                      className={\`flex items-center gap-2 \${
+                      className={\`\flex items-center gap-2 \${
                         currentOrderBy === item ? "text-primary" : ""
                       }\`}
                       onClick={() => {
@@ -216,9 +269,9 @@ function index({
                       }}
                     >
                       <div
-                        className={\`cursor-pointer text-base \${
+                        className={\`\cursor-pointer text-base \${
                           currentOrderBy === item ? "text-primary" : ""
-                        }\`}
+                        } max-sm:text-sm\`}
                       >
                         {tableThData.get(item)}
                       </div>
@@ -282,6 +335,16 @@ function index({
                               );
                               isChecekd.splice(targetIndex, 1);
                             }
+
+                            if (!checakble.multi) {
+                              if (e.currentTarget.checked) {
+                                isChecekd.splice(0, 1);
+                                isChecekd[0] = item.index as number;
+                              } else {
+                                isChecekd.splice(0, 1);
+                              }
+                            }
+                            console.log("isChecekd", isChecekd);
                             setTableChecked(isChecekd);
                             checakble.setter(isChecekd);
                           }}
@@ -301,7 +364,7 @@ function index({
                         }\`}
                         onClick={(e) => {
                           e.preventDefault();
-                          tdOptions[key]?.func && tdOptions[key]?.func();
+                          tdOptions[key]?.func && tdOptions[key]?.func!();
                           checakble.active &&
                             checkboxRef.current[item.index as number]?.click();
                         }}
@@ -319,7 +382,7 @@ function index({
                           }
                         >
                           {tdOptions[key]?.el
-                            ? tdOptions[key]?.el(value, index)
+                            ? tdOptions[key]?.el!(value, index)
                             : value}
                         </div>
                       </td>
@@ -361,7 +424,7 @@ function index({
                 Page {currentPage + 1}
               </button>
               <button className="join-item btn btn-sm max-sm:btn-xs min-w-[54.24px] !bg-transparent hover:!bg-transparent hover:!border-[#d6d3d4] cursor-default pointer-events-none">
-                {\`\${
+                {\` \${
                   tableTdData[currentPage] &&
                   tableTdData[currentPage].reduce((a, b) => {
                     return b.index < a.index ? b : a;
@@ -397,7 +460,7 @@ function index({
               >
                 {_.map(perPageList, (item, index) => {
                   return (
-                    <option value={item} key={\`perPage-\${index}\`}>
+                    <option value={item} key={\`\perPage-\${index}\`}>
                       {\`\${item} / page\`}
                     </option>
                   );
@@ -412,7 +475,6 @@ function index({
 }
 
 export default index;
-
 
 `}
           </SyntaxHighlighter>
@@ -437,9 +499,7 @@ export default index;
               className="Types"
             >
               {`type TableTypes = {
-  data: {
-    [x: string]: string | number | boolean | string[] | number[] | boolean[];
-  }[];
+  data: TdObjTypes[];
   addedMap: string[][];
   checakble?: { active: boolean; multi: boolean; setter: Function };
   trOptions?: {
@@ -455,9 +515,9 @@ export default index;
   tdOptions?: {
     [key: string]: {
       className?: string;
-      func: Function;
+      func?: Function;
       tooltip?: { active: boolean; text: string };
-      el: Function;
+      el?: Function;
     };
   };
   buttons?: {
@@ -480,9 +540,7 @@ type EditableCellTypes = {
   };
 
 type TableTdFunctionTypes = {
-    array: {
-      [x: string]: string | number | boolean | string[] | number[] | boolean[];
-    }[];
+    array: TdObjTypes[];
     setter: Function;
     perPage: number;
     thMap: Map<string, string>;
@@ -494,7 +552,7 @@ setter: Function;
 };
 
 type TdObjTypes = {
-[x: string]: string | number | boolean | string[] | number[] | boolean[];
+[x: string]: string | number | boolean | string[] | number[] | boolean[] | {};
 };
         `}
             </SyntaxHighlighter>
