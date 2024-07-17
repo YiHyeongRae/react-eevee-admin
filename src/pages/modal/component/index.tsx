@@ -86,13 +86,16 @@ function ModalOpener({
     );
 }
 
+
+
+
 export { Modal, ModalOpener };
 `}
           </SyntaxHighlighter>
         </div>
 
         <div className="grid grid-cols-2 col-span-1 gap-2 overflow-hidden max-md:grid-cols-1">
-          <div className="grid col-span-1 overflow-auto">
+          <div className="flex flex-col overflow-auto">
             <div className="flex flex-wrap col-span-1 gap-2 mr-1">
               <div className="badge badge-outline max-sm:text-xs">
                 {t("common.types")}
@@ -107,7 +110,7 @@ export { Modal, ModalOpener };
             <SyntaxHighlighter
               language="tsx"
               style={vscDarkPlus}
-              className="Types"
+              className="flex-auto Types"
             >
               {`type ModalTypes = {
   id: string;
@@ -123,21 +126,10 @@ type ModalOpenerTypes = {
   children: ReactNode;
   func?: Function;
 };
-
-
-
-
-
-
-
-
-
-
-
 `}
             </SyntaxHighlighter>
           </div>
-          <div className="grid col-span-1 overflow-auto">
+          <div className="flex flex-col overflow-auto">
             <div className="flex flex-wrap col-span-1 gap-2 mr-1">
               <div className="badge badge-outline max-sm:text-xs">
                 {t("common.function")}
@@ -152,7 +144,7 @@ type ModalOpenerTypes = {
             <SyntaxHighlighter
               language="tsx"
               style={vscDarkPlus}
-              className="Types"
+              className="flex-auto Function"
             >
               {`export function openModal(id: string) {
   (document.getElementById(id) as HTMLFormElement).showModal();
@@ -164,21 +156,6 @@ export function closeModal(id: string) {
   ) as HTMLFormElement;
   closeButton.click();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 `}
             </SyntaxHighlighter>
           </div>
