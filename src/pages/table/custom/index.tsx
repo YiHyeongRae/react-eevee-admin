@@ -16,6 +16,7 @@ function index() {
       custom3: true,
       custom4: ["apple", "banana", "lemon"],
       custom5: { test: "yea i am obj test" },
+      custom6: 20,
     },
     {
       title: "custom-table-example-2",
@@ -24,6 +25,7 @@ function index() {
       custom3: false,
       custom4: ["samsung", "galaxy", "flip"],
       custom5: { test: "me too test in example-2" },
+      custom6: 100,
     },
   ]);
   const addedMap = [
@@ -33,6 +35,7 @@ function index() {
     ["custom3", "boolean"],
     ["custom4", "array"],
     ["custom5", "obj"],
+    ["custom6", "get other data"],
   ];
 
   const [isExpand, setIsExpand] = useState(true);
@@ -64,6 +67,7 @@ function index() {
         custom3: true,
         custom4: ["apple", "banana", "lemon"],
         custom5: { test: "yea i am obj test" },
+        custom6: 20,
       },
       {
         title: "custom-table-example-2",
@@ -72,6 +76,7 @@ function index() {
         custom3: false,
         custom4: ["samsung", "galaxy", "flip"],
         custom5: { test: "me too test in example-2" },
+        custom6: 100,
       },
     ]);
     const addedMap = [
@@ -81,6 +86,7 @@ function index() {
       ["custom3", "boolean"],
       ["custom4", "array"],
       ["custom5", "obj"],
+      ["custom6", "get other data"],
     ];
 
     return (
@@ -139,6 +145,19 @@ function index() {
           },
           func: () => {},
         },
+        custom6: {
+          el: (item: number, index: number) => {
+            const custom1Data = dummyData[index].custom1;
+
+            return (
+              <span>
+                this rows custom1 data = {custom1Data}
+                <br /> and this columns data = {item}
+              </span>
+            );
+          },
+          func: () => {},
+        },
       }}
     />
     );
@@ -163,7 +182,6 @@ function index() {
             el: (item: number) => {
               return `${item * 3}%`;
             },
-            func: () => {},
           },
           custom2: {
             el: (item: string) => {
@@ -173,14 +191,12 @@ function index() {
                 </button>
               );
             },
-            func: () => {},
           },
           custom3: {
             el: (item: boolean) => {
               const result = item ? "활성" : "휴면";
               return result;
             },
-            func: () => {},
           },
           custom4: {
             el: (item: string[]) => {
@@ -196,13 +212,23 @@ function index() {
                 </select>
               );
             },
-            func: () => {},
           },
           custom5: {
             el: (item: { test: string }) => {
               return <span>{item.test}</span>;
             },
-            func: () => {},
+          },
+          custom6: {
+            el: (item: number, index: number) => {
+              const custom1Data = dummyData[index].custom1;
+
+              return (
+                <span>
+                  this rows custom1 data = {custom1Data}
+                  <br /> and this columns data = {item}
+                </span>
+              );
+            },
           },
         }}
       />
