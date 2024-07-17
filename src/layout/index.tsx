@@ -25,14 +25,21 @@ function index({ children }: { children: ReactNode }) {
 
   const [user] = useRecoilState(userState);
 
+  useEffect(() => {
+    const isMobile = navigator.userAgent.match(
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+    );
+
+    if (isMobile) {
+      setNavState(false);
+    }
+  }, []);
+
   return (
     <>
       {loading.isLoading && <LoadingFullScreen />}
 
-      <div
-        className={`layout h-full ${navStatae ? "pl-56" : "pl-14"}`}
-        // onClick={() => test()}
-      >
+      <div className={`layout h-full ${navStatae ? "pl-56" : "pl-14"}`}>
         <Header func={setNavState} navState={navStatae} />
         <Sidebar open={navStatae} data={SidebarData} role={user.role} />
         <div
