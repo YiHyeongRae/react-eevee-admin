@@ -9,16 +9,7 @@ type CarouselTyees = {
 };
 
 type TableTypes = {
-  data: {
-    [x: string]:
-      | string
-      | number
-      | boolean
-      | string[]
-      | number[]
-      | boolean[]
-      | {};
-  }[];
+  data: TdObjTypes[];
   addedMap: string[][];
   checakble?: { active: boolean; multi: boolean; setter: Function };
   trOptions?: {
@@ -34,9 +25,9 @@ type TableTypes = {
   tdOptions?: {
     [key: string]: {
       className?: string;
-      func: Function;
+      func?: Function;
       tooltip?: { active: boolean; text: string };
-      el: Function;
+      el?: Function;
     };
   };
   buttons?: {
@@ -48,16 +39,7 @@ type TableTypes = {
 };
 
 type TableTdFunctionTypes = {
-  array: {
-    [x: string]:
-      | string
-      | number
-      | boolean
-      | string[]
-      | number[]
-      | boolean[]
-      | {};
-  }[];
+  array: TdObjTypes[];
   setter: Function;
   perPage: number;
   thMap: Map<string, string>;
