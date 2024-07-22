@@ -1,7 +1,6 @@
 type SidebarTypes = {
   open: boolean;
   data: {
-    title: string;
     path: string;
     key: string;
     sub: {
