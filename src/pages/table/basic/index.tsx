@@ -70,28 +70,7 @@ function index() {
             {`import Table from "#/components/Table";
 
 function index() {
-  const buttons = [
-    {
-      className: "",
-      text: "추가버튼",
-      func: () => {},
-      disabled: false,
-    },
-    {
-      className: "",
-      text: "다른버튼",
-      func: () => {
-        alert("다른버튼 액션");
-      },
-      disabled: false,
-    },
-    {
-      className: "",
-      text: "또다른버튼",
-      func: () => {},
-      disabled: true,
-    },
-  ];
+  
   const dummyData = [
     {
       userName: "가",
@@ -118,7 +97,7 @@ function index() {
   ];
   
   return (
-      <Table buttons={buttons} data={dummyData} addedMap={addedMap} />
+      <Table data={dummyData} addedMap={addedMap} />
   );
 }
 
@@ -126,7 +105,7 @@ export default index;`}
           </SyntaxHighlighter>
         </div>
       )}
-      <Table buttons={buttons} data={dummyData} addedMap={addedMap} />
+      <Table data={dummyData} addedMap={addedMap} />
     </>
   );
 }

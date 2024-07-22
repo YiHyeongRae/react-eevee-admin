@@ -1,5 +1,6 @@
 import { Modal } from "#/components/Modal";
 import Table from "#/components/Table";
+import TableExtensionHeader from "#/components/TableExtensionHeader";
 import { openModal } from "#/utils/useModalHandler";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -78,6 +79,7 @@ function index() {
         <div className="grid grid-cols-1 gap-2 h-3/4">
           <SyntaxHighlighter language="tsx" style={vscDarkPlus}>
             {`import Table from "#/components/Table";
+import TableExtensionHeader from "#/components/TableExtensionHeader";
 import { openModal } from "#/utils/useModalHandler";
 
 function index() {
@@ -138,12 +140,17 @@ function index() {
   
   return (
     <>
+      <TableExtensionHeader
+        search={false}
+        query={{ active: false }}
+        setter={() => {}}
+        etc={buttons}
+      />
       <Table
-          checakble={{ active: true, multi: isMulti, setter: setTargetIndex }}
-          buttons={buttons}
-          data={dummyData}
-          addedMap={addedMap}
-        />
+        checakble={{ active: true, multi: isMulti, setter: setTargetIndex }}
+        data={dummyData}
+        addedMap={addedMap}
+      />
       <Modal id="table-modal">
         target index : [ {targetIndex.toString()} ]
       </Modal>
@@ -155,9 +162,14 @@ export default index;`}
           </SyntaxHighlighter>
         </div>
       )}
+      <TableExtensionHeader
+        search={false}
+        query={{ active: false }}
+        setter={() => {}}
+        etc={buttons}
+      />
       <Table
         checakble={{ active: true, multi: isMulti, setter: setTargetIndex }}
-        buttons={buttons}
         data={dummyData}
         addedMap={addedMap}
       />

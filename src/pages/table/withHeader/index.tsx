@@ -1,40 +1,12 @@
+import { Modal } from "#/components/Modal";
 import Table from "#/components/Table";
 import TableExtensionHeader from "#/components/TableExtensionHeader";
+import { openModal } from "#/utils/useModalHandler";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 function index() {
-  const [isMulti, setMulti] = useState(false);
-  const [targetIndex, setTargetIndex] = useState([]);
-  const buttons = [
-    {
-      className: "",
-      text: "멀티 체크",
-      func: () => {
-        setMulti(true);
-        setTargetIndex([]);
-      },
-      disabled: isMulti,
-    },
-    {
-      className: "",
-      text: "단일 체크",
-      func: () => {
-        setMulti(false);
-        setTargetIndex([]);
-      },
-      disabled: !isMulti,
-    },
-    {
-      className: "",
-      text: "체크 인덱스",
-      func: () => {
-        alert(`${targetIndex}`);
-      },
-      disabled: false,
-    },
-  ];
   const [dummyData] = useState([
     {
       userName: "가가가",
@@ -61,6 +33,9 @@ function index() {
   ];
   const [isExpand, setIsExpand] = useState(true);
   const { t } = useTranslation();
+
+  const [searchText, setSearchText] = useState("");
+  const [queryText, setQueryText] = useState("");
   return (
     <>
       <div>
@@ -80,36 +55,9 @@ function index() {
 import TableExtensionHeader from "#/components/TableExtensionHeader";
 
 function index() {
-  const [isMulti, setMulti] = useState(false);
-  const [targetIndex, setTargetIndex] = useState([]);
-  const buttons = [
-      {
-        className: "",
-        text: "멀티 체크",
-        func: () => {
-            setMulti(true);
-            setTargetIndex([])
-          },
-        disabled: isMulti,
-      },
-      {
-        className: "",
-        text: "단일 체크",
-        func: () => {
-              setMulti(false);
-              setTargetIndex([])
-          },
-        disabled: !isMulti,
-      },
-      {
-        className: "",
-        text: "체크 인덱스",
-        func: () => {
-              alert(\`\${targetIndex}\`);
-          },
-        disabled: false,
-      },
-    ];
+  
+  const [searchText, setSearchText] = useState("");
+  const [queryText, setQueryText] = useState("");
   const [dummyData] = useState([
     {
       userName: "가가가",
@@ -138,15 +86,21 @@ function index() {
   return (
     <>
       <TableExtensionHeader
-        search={false}
-        query={{ active: false }}
-        setter={() => {}}
-        etc={buttons}
+        search={{ active: true, setter: setSearchText }}
+        query={{
+          active: true,
+          setter: setQueryText,
+          submit: () => {
+            alert(\`\axios.get(/\${queryText}/As/You/Want)\`);
+          },
+          disabled: queryText === "",
+        }}
       />
       <Table
-        checakble={{ active: true, multi: isMulti, setter: setTargetIndex }}
+        checakble={{ active: false, multi: false, setter: () => {} }}
         data={dummyData}
         addedMap={addedMap}
+        searchText={searchText}
       />
     </>
   );
@@ -157,15 +111,21 @@ export default index;`}
         </div>
       )}
       <TableExtensionHeader
-        search={false}
-        query={{ active: false }}
-        setter={() => {}}
-        etc={buttons}
+        search={{ active: true, setter: setSearchText }}
+        query={{
+          active: true,
+          setter: setQueryText,
+          submit: () => {
+            alert(`axios.get(/${queryText}/As/You/Want)`);
+          },
+          disabled: queryText === "",
+        }}
       />
       <Table
-        checakble={{ active: true, multi: isMulti, setter: setTargetIndex }}
+        checakble={{ active: false, multi: false, setter: () => {} }}
         data={dummyData}
         addedMap={addedMap}
+        searchText={searchText}
       />
     </>
   );

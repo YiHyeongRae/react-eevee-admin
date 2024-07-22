@@ -104,7 +104,6 @@ function index() {
             console.log("item?", item);
             return \`\${item * 3}%\`;
           },
-          func: () => {},
         },
         custom2: {
           el: (item: string) => {
@@ -114,14 +113,12 @@ function index() {
               </button>
             );
           },
-          func: () => {},
         },
         custom3: {
           el: (item: boolean) => {
             const result = item ? "활성" : "휴면";
             return result;
           },
-          func: () => {},
         },
         custom4: {
           el: (item: string[]) => {
@@ -137,13 +134,11 @@ function index() {
               </select>
             );
           },
-          func: () => {},
         },
         custom5: {
           el: (item: { test: string }) => {
             return <span>{item.test}</span>;
           },
-          func: () => {},
         },
         custom6: {
           el: (item: number, index: number) => {
@@ -156,7 +151,6 @@ function index() {
               </span>
             );
           },
-          func: () => {},
         },
       }}
     />

@@ -72,23 +72,25 @@ function index() {
             {`import { useEffect, useRef, useState } from "react";
 import _ from "lodash";
 import { useTable } from "#/utils/useTable";
-import { TableTypes } from "#/data/types/components";
+import { TableTypes, TdObjTypes } from "#/data/types/components";
+import { getRegExp } from "korean-regexp";
 
 function index({
   data = [],
   addedMap = [["", ""]],
   checakble = { active: true, multi: false, setter: () => {} },
+  draggable = true,
   tdOptions = {},
   trOptions = {
     thead: { className: "", func: () => {} },
     tbody: { className: "", func: () => {} },
   },
-  buttons = [{ className: "", text: "", func: () => {}, disabled: false }],
+  searchText = "",
 }: TableTypes) {
   const thMap = new Map([["index", "no"]]);
 
   const [tableThData, setTableThData] = useState(thMap);
-  const [tableTdData, setTableTdData] = useState<TdObjTypes[]>([]);
+  const [tableTdData, setTableTdData] = useState<TdObjTypes[][]>([]);
   const [addedMapData, setAddedMapData] = useState(addedMap);
   const [tabelCkecked, setTableChecked] = useState<number[]>([]);
 
@@ -101,6 +103,7 @@ function index({
   const [drag, setDrag] = useState({
     start: "",
     end: "",
+    beforeChanged: "",
   });
 
   useEffect(() => {
@@ -121,27 +124,8 @@ function index({
   useEffect(() => {
     setTableChecked([]);
   }, [checakble.active, checakble.multi]);
-
   return (
-    <div className="h-full col-span-2">
-      <div className="flex justify-end gap-2 mb-2">
-        {buttons[0].text !== "" &&
-          buttons.map((item, index) => {
-            return (
-              <button
-                disabled={item.disabled}
-                className={\`flex-wrap bg-primary btn btn-sm max-sm:btn-xs text-white $\{item.className}\`}
-                key={index}
-                onClick={() => {
-                  item.func();
-                }}
-              >
-                {item.text}
-              </button>
-            );
-          })}
-      </div>
-
+    <div className="h-full">
       <div
         className="overflow-x-auto"
         style={{
@@ -149,12 +133,12 @@ function index({
           minHeight: "calc(100% - 114px)",
         }}
       >
-        <table className="table table-s max-sm:table-xs table-pin-rows table-pin-cols">
+        <table className="table table-s max-sm:table-xs table-pin-rows table-pin-cols  !border-separate !border-spacing-0">
           <thead>
             <tr
-              className={\`\${trOptions.thead.className}  border-zinc-400\`}
+              className={\`\border-zinc-400 \${trOptions?.thead?.className}\`}
               onClick={() =>
-                trOptions?.thead.func !== undefined && trOptions.thead.func()
+                trOptions?.thead?.func !== undefined && trOptions.thead.func()
               }
             >
               {checakble.active && (
@@ -191,28 +175,37 @@ function index({
                   <td
                     className="border"
                     key={\`\${item}-\${index}\`}
-                    draggable
+                    draggable={item !== "index" && draggable}
                     onDragStart={(e) => {
                       const text = e.currentTarget.children[0]
                         .children[0] as HTMLElement;
                       setDrag((prev) => {
-                        return { ...prev, start: text.innerText };
+                        return {
+                          ...prev,
+                          start: text.innerText,
+                        };
                       });
                     }}
                     onDragEnter={(e) => {
+                      const text = e.currentTarget.children[0]
+                        .children[0] as HTMLElement;
+                      setDrag((prev) => {
+                        return {
+                          ...prev,
+                          beforeChanged: text.innerText,
+                        };
+                      });
                       const throttledDrager = _.throttle(() => {
-                        const text = e.currentTarget.children[0]
-                          .children[0] as HTMLElement;
-
                         if (
                           drag.start !== "no" &&
                           drag.start !== "" &&
                           text.innerText !== "" &&
-                          text.innerText !== "no"
+                          text.innerText !== "no" &&
+                          drag.beforeChanged !== text.innerText
                         ) {
                           const copy = [...addedMapData];
                           const startIndex = copy.findIndex((subArr) =>
-                            subArr?.includes(drag.start)
+                            subArr.includes(drag.start)
                           );
                           const endIndex = copy.findIndex((subArr) =>
                             subArr.includes(text.innerText)
@@ -231,7 +224,7 @@ function index({
                       e.preventDefault();
                     }}
                     onDragEnd={() => {
-                      setDrag({ start: "", end: "" });
+                      setDrag({ start: "", end: "", beforeChanged: "" });
                     }}
                   >
                     <div
@@ -306,13 +299,21 @@ function index({
               return (
                 <tr
                   key={index}
-                  className={\`\${trOptions.tbody.className} \${
+                  className={\`
+                  \${
+                    searchText !== "" &&
+                    !getRegExp(searchText).test(Object.values(item).toString())
+                      ? "hidden"
+                      : ""
+                  }
+                  
+                  \${trOptions?.tbody?.className} \${
                     tabelCkecked.includes(item.index as number)
                       ? "bg-primary text-primary-content"
                       : ""
                   } border-zinc-400\`}
                   onClick={() => {
-                    trOptions.tbody.func(item, index);
+                    trOptions?.tbody?.func?.(item, index);
                   }}
                 >
                   {checakble.active && (
@@ -344,7 +345,6 @@ function index({
                                 isChecekd.splice(0, 1);
                               }
                             }
-                            console.log("isChecekd", isChecekd);
                             setTableChecked(isChecekd);
                             checakble.setter(isChecekd);
                           }}
@@ -357,14 +357,16 @@ function index({
                       <td
                         id={key}
                         key={key}
-                        className={\`\${tdOptions[key]?.className} \${
+                        className={\`
+                      
+                        \${tdOptions[key]?.className} \${
                           key === "index" || key === "userName"
                             ? ""
                             : "min-w-[11rem]"
                         }\`}
                         onClick={(e) => {
                           e.preventDefault();
-                          tdOptions[key]?.func && tdOptions[key]?.func!();
+                          tdOptions[key]?.func && tdOptions[key]?.func?.();
                           checakble.active &&
                             checkboxRef.current[item.index as number]?.click();
                         }}
@@ -382,7 +384,7 @@ function index({
                           }
                         >
                           {tdOptions[key]?.el
-                            ? tdOptions[key]?.el!(value, index)
+                            ? tdOptions[key]?.el?.(value, index)
                             : value}
                         </div>
                       </td>
@@ -460,7 +462,7 @@ function index({
               >
                 {_.map(perPageList, (item, index) => {
                   return (
-                    <option value={item} key={\`\perPage-\${index}\`}>
+                    <option value={item} key={\`perPage-\${index}\`}>
                       {\`\${item} / page\`}
                     </option>
                   );
@@ -476,6 +478,7 @@ function index({
 
 export default index;
 
+
 `}
           </SyntaxHighlighter>
         </div>
@@ -488,7 +491,7 @@ export default index;
               </div>
               <div
                 className="cursor-pointer badge badge-primary max-sm:text-xs"
-                onClick={() => copyAndPaste("Component")}
+                onClick={() => copyAndPaste("Types")}
               >
                 {t("common.copy")}
               </div>
@@ -520,12 +523,7 @@ export default index;
       el?: Function;
     };
   };
-  buttons?: {
-    className: string;
-    text: string;
-    func: Function;
-    disabled: boolean;
-  }[];
+  searchText?: string;
 };
 
 type EditableCellTypes = {
@@ -564,7 +562,7 @@ type TdObjTypes = {
               </div>
               <div
                 className="cursor-pointer badge badge-primary max-sm:text-xs"
-                onClick={() => copyAndPaste("Component")}
+                onClick={() => copyAndPaste("Function")}
               >
                 {t("common.copy")}
               </div>
@@ -648,7 +646,7 @@ export const useTable = {
             </svg>
             <p className="col-span-12 text-md">
               data의 object의 key와 addedMap의 key가 일치해야 Table에 정상적으로
-              반영됩니다.
+              반영.
             </p>
           </li>
           <li className="grid justify-start grid-flow-col-dense gap-2">
@@ -669,7 +667,7 @@ export const useTable = {
             <p className="col-span-12 text-md">
               Table에서 고정적으로 사용되는 Headcell의 값을 Table Component
               thMap에 추가하면 됩니다.( headcell의 추가 값은 Table 사용처에서
-              [[key,value]]로 data의 object의 key와 맞춰주면 됩니다. )
+              [[key,value]]로 data의 object의 key와 맞추기. )
             </p>
           </li>
           <li className="grid items-start justify-start grid-flow-col-dense gap-2">
@@ -693,6 +691,25 @@ export const useTable = {
           multi: 다중선택 여부, 
           setter: 선택된 값 받을 함수
           }`}
+            </p>
+          </li>
+          <li className="grid items-start justify-start grid-flow-col-dense gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+              />
+            </svg>
+            <p className="flex col-span-12 text-md">
+              {`draggable, thead의 draggable로 변경 가능 여부`}
             </p>
           </li>
           <li className="grid items-start justify-start grid-flow-col-dense gap-2">
