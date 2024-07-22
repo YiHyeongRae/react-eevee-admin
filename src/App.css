@@ -124,6 +124,6 @@ q:after {
   content: none;
 }
 table {
-  border-collapse: collapse;
+  border-collapse: separate !important;
   border-spacing: 0;
 }
