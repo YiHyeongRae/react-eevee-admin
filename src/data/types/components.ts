@@ -12,14 +12,15 @@ type TableTypes = {
   data: TdObjTypes[];
   addedMap: string[][];
   checakble?: { active: boolean; multi: boolean; setter: Function };
+  draggable?: boolean;
   trOptions?: {
-    thead: {
-      className: string;
-      func: Function;
+    thead?: {
+      className?: string;
+      func?: Function;
     };
-    tbody: {
-      className: string;
-      func: Function;
+    tbody?: {
+      className?: string;
+      func?: Function;
     };
   };
   tdOptions?: {
@@ -30,12 +31,7 @@ type TableTypes = {
       el?: Function;
     };
   };
-  buttons?: {
-    className: string;
-    text: string;
-    func: Function;
-    disabled: boolean;
-  }[];
+  searchText?: string;
 };
 
 type TableTdFunctionTypes = {
@@ -48,6 +44,22 @@ type TableThFunctionTypes = {
   addedMap: string[][];
   thMap: Map<string, string>;
   setter: Function;
+};
+
+type TableExtensionHeaderTypes = {
+  search?: { active?: boolean; setter?: Function };
+  query?: {
+    active?: boolean;
+    setter?: Function;
+    submit?: Function;
+    disabled?: boolean;
+  };
+  etc?: {
+    className: string;
+    text: string;
+    func: Function;
+    disabled: boolean;
+  }[];
 };
 
 type TdObjTypes = {
@@ -80,6 +92,7 @@ type AlertTypes = {
     disabled: boolean;
   }[];
   open?: boolean;
+  className?: string;
 };
 
 type AlertOpenerTypes = {
@@ -92,7 +105,6 @@ type AlertOpenerTypes = {
 
 type AccessGuardTypes = {
   data: {
-    title: string;
     path: string;
     key: string;
     sub: {
@@ -124,8 +136,8 @@ type EditableCellTypes = {
   edit: {
     editItem: string | number;
     setEditItem: Function;
-    confirmFunc: Function;
-    cancleFunc: Function;
+    confirmFunc?: Function;
+    cancleFunc?: Function;
   };
 };
 
@@ -155,6 +167,7 @@ export type {
   TableTypes,
   TableTdFunctionTypes,
   TableThFunctionTypes,
+  TableExtensionHeaderTypes,
   TdObjTypes,
   CarouselTyees,
   ModalTypes,
