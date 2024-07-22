@@ -93,7 +93,10 @@
     "modal": "Modal",
     "function": "Function",
     "withModal": "withModal",
-    "custom": "Custom"
+    "withHeader": "widthHeader",
+    "custom": "Custom",
+    "carousel": "Carousel",
+    "tableExtensionHeader": "Table Extension Header"
   },
   "placeholder": {
     "password": "6 or more characters can be used in English, numbers, and special characters",
