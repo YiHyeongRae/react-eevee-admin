@@ -39,7 +39,7 @@ function index({ item, index, edit }: EditableCellTypes) {
           type="text"
           placeholder={item}
           onBlur={(e) => {
-            // edit.setEditItem("");
+            edit.setEditItem("");
             e.target.value = "";
           }}
         />
@@ -50,6 +50,12 @@ function index({ item, index, edit }: EditableCellTypes) {
           strokeWidth={1.5}
           stroke="currentColor"
           className="cursor-pointer size-4 hover:text-primary"
+          onMouseDown={(e) => {
+            e.preventDefault();
+          }}
+          onTouchStart={(e) => {
+            e.preventDefault();
+          }}
           onClick={() => {
             edit.confirmFunc?.();
             edit.setEditItem("");
@@ -68,7 +74,14 @@ function index({ item, index, edit }: EditableCellTypes) {
           strokeWidth={1.5}
           stroke="currentColor"
           className="cursor-pointer size-4 hover:text-primary"
-          onClick={() => {
+          onMouseDown={(e) => {
+            e.preventDefault();
+          }}
+          onTouchStart={(e) => {
+            e.preventDefault();
+          }}
+          onClick={(e) => {
+            e.preventDefault();
             edit.cancleFunc?.();
             edit.setEditItem("");
           }}
