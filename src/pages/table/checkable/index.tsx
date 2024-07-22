@@ -157,9 +157,8 @@ export default index;`}
         </div>
       )}
       <TableExtensionHeader
-        search={false}
+        search={{ active: false }}
         query={{ active: false }}
-        setter={() => {}}
         etc={buttons}
       />
       <Table

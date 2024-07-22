@@ -1,7 +1,5 @@
-import { Modal } from "#/components/Modal";
 import Table from "#/components/Table";
 import TableExtensionHeader from "#/components/TableExtensionHeader";
-import { openModal } from "#/utils/useModalHandler";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";

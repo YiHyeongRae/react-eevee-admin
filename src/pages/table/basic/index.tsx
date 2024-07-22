@@ -4,28 +4,6 @@ import { useTranslation } from "react-i18next";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 function index() {
-  const buttons = [
-    {
-      className: "",
-      text: "추가버튼",
-      func: () => {},
-      disabled: false,
-    },
-    {
-      className: "",
-      text: "다른버튼",
-      func: () => {
-        alert("다른버튼 액션");
-      },
-      disabled: false,
-    },
-    {
-      className: "",
-      text: "또다른버튼",
-      func: () => {},
-      disabled: true,
-    },
-  ];
   const dummyData = [
     {
       userName: "가가가",

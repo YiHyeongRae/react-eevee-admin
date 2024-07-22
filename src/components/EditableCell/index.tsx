@@ -51,7 +51,7 @@ function index({ item, index, edit }: EditableCellTypes) {
           stroke="currentColor"
           className="cursor-pointer size-4 hover:text-primary"
           onClick={() => {
-            edit.confirmFunc();
+            edit.confirmFunc?.();
             edit.setEditItem("");
           }}
         >
@@ -69,7 +69,7 @@ function index({ item, index, edit }: EditableCellTypes) {
           stroke="currentColor"
           className="cursor-pointer size-4 hover:text-primary"
           onClick={() => {
-            edit.cancleFunc();
+            edit.cancleFunc?.();
             edit.setEditItem("");
           }}
         >
