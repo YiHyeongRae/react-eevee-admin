@@ -177,17 +177,6 @@ function index() {
         }}
         data={dummyData}
         addedMap={addedMap}
-        trOptions={{
-          thead: { className: "", func: () => {} },
-          tbody: {
-            className: "",
-            func: () => {
-              if (editItem !== "") {
-                setEditItem("");
-              }
-            },
-          },
-        }}
         tdOptions={{
           phone: {
             el: (item: string, index: number) => {
