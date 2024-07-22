@@ -1,5 +1,5 @@
 function index() {
-  return <div>point</div>;
+  return <div>index</div>;
 }
 
 export default index;

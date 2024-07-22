@@ -32,7 +32,7 @@ function index() {
             style={vscDarkPlus}
             className="Component"
           >
-            {`import { ModalOpenerTypes, ModalTypes } from "#/data/types/components";
+            {`import { ModalOpenerTypes, ModalTypes } from "../../data/types/components";
 
 function Modal({ id, className, children, closeFunc, open }: ModalTypes) {
     return (

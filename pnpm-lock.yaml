@@ -26,6 +26,9 @@ importers:
       i18next:
         specifier: ^23.11.5
         version: 23.11.5
+      korean-regexp:
+        specifier: ^1.0.12
+        version: 1.0.12
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -2022,6 +2025,9 @@ packages:
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
+
+  korean-regexp@1.0.12:
+    resolution: {integrity: sha512-j6wF9gnheluqSMQ0H4dDTrWR2U7POrnmzUWWPRmwwp69FOQFqu331/Q3N/WCmhyDUW0cRPzCE3RwY3auXEtdgg==}
 
   lazystream@1.0.1:
     resolution: {integrity: sha512-b94GiNHQNy6JNTrt5w6zNyffMrNkXZb3KTkCZJb2V1xaEGCk093vkZ2jk3tpaeP33/OiXC+WvK9AxUebnf5nbw==}
@@ -4939,6 +4945,8 @@ snapshots:
   keyv@4.5.4:
     dependencies:
       json-buffer: 3.0.1
+
+  korean-regexp@1.0.12: {}
 
   lazystream@1.0.1:
     dependencies:

@@ -2,17 +2,19 @@ import { useEffect, useRef, useState } from "react";
 import _ from "lodash";
 import { useTable } from "#/utils/useTable";
 import { TableTypes, TdObjTypes } from "#/data/types/components";
+import { getRegExp } from "korean-regexp";
 
 function index({
   data = [],
   addedMap = [["", ""]],
   checakble = { active: true, multi: false, setter: () => {} },
+  draggable = true,
   tdOptions = {},
   trOptions = {
     thead: { className: "", func: () => {} },
     tbody: { className: "", func: () => {} },
   },
-  buttons = [{ className: "", text: "", func: () => {}, disabled: false }],
+  searchText = "",
 }: TableTypes) {
   const thMap = new Map([["index", "no"]]);
 
@@ -52,8 +54,8 @@ function index({
     setTableChecked([]);
   }, [checakble.active, checakble.multi]);
   return (
-    <div className="h-full col-span-2">
-      <div className="flex justify-end gap-2 mb-2">
+    <div className="h-full">
+      {/* <div className="flex justify-end gap-2 mb-2">
         {buttons[0]?.text !== "" &&
           buttons.map((item, index) => {
             return (
@@ -69,21 +71,21 @@ function index({
               </button>
             );
           })}
-      </div>
+      </div> */}
 
       <div
-        className="overflow-x-auto "
+        className="overflow-x-auto"
         style={{
           maxHeight: "calc(100% - 114px)",
           minHeight: "calc(100% - 114px)",
         }}
       >
-        <table className="table table-s max-sm:table-xs table-pin-rows table-pin-cols">
+        <table className="table table-s max-sm:table-xs table-pin-rows table-pin-cols  !border-separate !border-spacing-0">
           <thead>
             <tr
-              className={`${trOptions.thead.className} border-zinc-400`}
+              className={` border-zinc-400 ${trOptions?.thead?.className}`}
               onClick={() =>
-                trOptions?.thead.func !== undefined && trOptions.thead.func()
+                trOptions?.thead?.func !== undefined && trOptions.thead.func()
               }
             >
               {checakble.active && (
@@ -120,7 +122,7 @@ function index({
                   <td
                     className="border"
                     key={`${item}-${index}`}
-                    draggable={item !== "index"}
+                    draggable={item !== "index" && draggable}
                     onDragStart={(e) => {
                       const text = e.currentTarget.children[0]
                         .children[0] as HTMLElement;
@@ -244,13 +246,21 @@ function index({
               return (
                 <tr
                   key={index}
-                  className={`${trOptions.tbody.className} ${
+                  className={`
+                  ${
+                    searchText !== "" &&
+                    !getRegExp(searchText).test(Object.values(item).toString())
+                      ? "hidden"
+                      : ""
+                  }
+                  
+                  ${trOptions?.tbody?.className} ${
                     tabelCkecked.includes(item.index as number)
                       ? "bg-primary text-primary-content"
                       : ""
                   } border-zinc-400`}
                   onClick={() => {
-                    trOptions.tbody.func(item, index);
+                    trOptions?.tbody?.func?.(item, index);
                   }}
                 >
                   {checakble.active && (
@@ -282,7 +292,6 @@ function index({
                                 isChecekd.splice(0, 1);
                               }
                             }
-                            console.log("isChecekd", isChecekd);
                             setTableChecked(isChecekd);
                             checakble.setter(isChecekd);
                           }}
@@ -295,14 +304,16 @@ function index({
                       <td
                         id={key}
                         key={key}
-                        className={`${tdOptions[key]?.className} ${
+                        className={`
+                      
+                        ${tdOptions[key]?.className} ${
                           key === "index" || key === "userName"
                             ? ""
                             : "min-w-[11rem]"
                         }`}
                         onClick={(e) => {
                           e.preventDefault();
-                          tdOptions[key]?.func && tdOptions[key]?.func!();
+                          tdOptions[key]?.func && tdOptions[key]?.func?.();
                           checakble.active &&
                             checkboxRef.current[item.index as number]?.click();
                         }}
@@ -320,7 +331,7 @@ function index({
                           }
                         >
                           {tdOptions[key]?.el
-                            ? tdOptions[key]?.el!(value, index)
+                            ? tdOptions[key]?.el?.(value, index)
                             : value}
                         </div>
                       </td>
