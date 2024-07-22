@@ -6,15 +6,12 @@ function index({ open, data, role }: SidebarTypes) {
   const navigate = useNavigate();
 
   const location = useLocation();
-  // console.log(open);
-
-  // console.log("data?", data);
 
   return (
     <>
       {/* Sidebar Nav */}
       {open ? (
-        <ul className="menu bg-[#333] text-[#efefef] w-56 h-full fixed left-0 top-0 p-0 overflow-x-hidden overflow-y-scroll flex-nowrap z-[9999]">
+        <ul className="menu bg-[#333] text-[#efefef] w-56 h-full fixed left-0 top-0 p-0 overflow-x-hidden overflow-y-scroll flex-nowrap z-[3]">
           {/* Logo 로고 */}
           <li
             onClick={() => {
@@ -34,6 +31,14 @@ function index({ open, data, role }: SidebarTypes) {
             </span>
           </li>
           {data.map((item, index) => {
+            const targetStrIndex = location.pathname
+              .replace("/", "")
+              .indexOf("/");
+
+            const targetPath = location.pathname.substring(
+              1,
+              targetStrIndex + 1
+            );
             return (
               item.access?.includes(role) &&
               (item.sub.length === 0 ? (
@@ -43,17 +48,17 @@ function index({ open, data, role }: SidebarTypes) {
                     navigate(item.path);
                   }}
                   className={`${
-                    location.pathname.includes(item.key) &&
-                    "bg-primary text-[#333]"
+                    targetPath === item.key && "bg-primary text-[#333]"
                   }`}
                 >
                   <span className={`!rounded-none`}>
                     <span className="w-6 max-sm:w-4">
                       <img
                         style={{
-                          filter: location.pathname.includes(item.key)
-                            ? "brightness(0%)"
-                            : "brightness(100%)",
+                          filter:
+                            targetPath === item.key
+                              ? "brightness(0%)"
+                              : "brightness(100%)",
                         }}
                         src={`/icons/${item.key}.svg`}
                       />
@@ -73,8 +78,7 @@ function index({ open, data, role }: SidebarTypes) {
                 >
                   <span
                     className={`menu-dropdown-toggle ${
-                      location.pathname.includes(item.key) &&
-                      "menu-dropdown-show"
+                      targetPath === item.key && "menu-dropdown-show"
                     } !rounded-none`}
                   >
                     <span className="w-6 max-sm:w-4">
@@ -89,8 +93,7 @@ function index({ open, data, role }: SidebarTypes) {
                   </span>
                   <ul
                     className={`menu-dropdown ps-0 ml-0 ${
-                      location.pathname.includes(item.key) &&
-                      "menu-dropdown-show"
+                      targetPath === item.key && "menu-dropdown-show"
                     }`}
                     style={{
                       visibility: location.pathname.includes(item.key)
@@ -128,7 +131,7 @@ function index({ open, data, role }: SidebarTypes) {
           })}
         </ul>
       ) : (
-        <ul className="menu bg-[#333] text-[#efefef] w-14 h-full fixed left-0 top-0 p-0 overflow-x-hidden overflow-y-scroll flex-nowrap">
+        <ul className="menu bg-[#333] text-[#efefef] w-14 h-full fixed left-0 top-0 p-0 overflow-x-hidden overflow-y-scroll flex-nowrap z-[3]">
           {/* Logo 로고 */}
           <li
             onClick={() => {
@@ -144,6 +147,14 @@ function index({ open, data, role }: SidebarTypes) {
             </span>
           </li>
           {data.map((item, index) => {
+            const targetStrIndex = location.pathname
+              .replace("/", "")
+              .indexOf("/");
+
+            const targetPath = location.pathname.substring(
+              1,
+              targetStrIndex + 1
+            );
             return (
               item.access?.includes(role) &&
               (item.sub.length === 0 ? (
@@ -153,8 +164,7 @@ function index({ open, data, role }: SidebarTypes) {
                     navigate(item.path);
                   }}
                   className={`${
-                    location.pathname.includes(item.key) &&
-                    "bg-primary text-[#333]"
+                    targetPath === item.key && "bg-primary text-[#333]"
                   }`}
                 >
                   <span className={`!rounded-none`}>
@@ -166,16 +176,19 @@ function index({ open, data, role }: SidebarTypes) {
                 </li>
               ) : (
                 <li
+                  className={targetPath === item.key ? "bg-primary" : ""}
                   key={`menu-${index}`}
                   onClick={() => {
                     navigate(item.path);
                   }}
                 >
                   <span
-                    className={`${
-                      location.pathname.includes(item.key) &&
-                      "menu-dropdown-show"
-                    } !rounded-none`}
+                    // className={`${
+                    //   location.pathname.includes(item.key) &&
+                    //   "menu-dropdown-show"
+                    // } !rounded-none`}
+
+                    className={`menu-dropdown-show !rounded-none`}
                   >
                     <img
                       style={{ filter: "brightness(100%)" }}
@@ -183,10 +196,8 @@ function index({ open, data, role }: SidebarTypes) {
                     />
                   </span>
                   <ul
-                    className={`menu-dropdown-sub menu-dropdown ps-0 ml-0 bg-[#333] overflow-hidden ${
-                      location.pathname.includes(item.key) &&
-                      "menu-dropdown-show"
-                    }`}
+                    className={`menu-dropdown-sub menu-dropdown ps-0 ml-0 bg-[#333] overflow-hidden  menu-dropdown-show
+                    `}
                     // className={`menu-dropdown ps-0 ml-0 ${
                     //   location.pathname.includes(item.key) && "menu-dropdown-show"
                     // }`}
@@ -197,7 +208,7 @@ function index({ open, data, role }: SidebarTypes) {
                       // visibility: location.pathname.includes(item.key)
                       //   ? "visible"
                       //   : "hidden",
-                      opacity: location.pathname.includes(item.key) ? 1 : 0,
+                      opacity: 1,
                       // transition: "all .3s linear",
                     }}
                   >
