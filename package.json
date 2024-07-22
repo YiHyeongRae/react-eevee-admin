@@ -16,6 +16,7 @@
     "exceljs": "^4.4.0",
     "file-saver": "^2.0.5",
     "i18next": "^23.11.5",
+    "korean-regexp": "^1.0.12",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
