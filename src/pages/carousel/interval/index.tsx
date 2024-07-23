@@ -35,19 +35,23 @@ function index() {
 import _ from "lodash";
 
 function index() {
-  const exampleCarousel = 7;
+  const exampleCarousel = [
+    "rgb(43,132,115)",
+    "rgb(12,114,247)",
+    "rgb(211,179,134)",
+    "rgb(107,134,45)",
+    "rgb(107,30,33)",
+  ];
 
   return (
-    <Carousel infinite>
-        {_.times(exampleCarousel, (item) => {
+    <Carousel interval={2000}>
+        {_.map(exampleCarousel, (item, index) => {
           return (
             <div
-              className={\`\flex items-center justify-center w-full h-40 text-lg font-bold \${
-                item === 0 ? "bg-primary" : "bg-secondary"
-              }\`}
-              key={item}
+              className={\`\flex items-center justify-center w-full h-40 text-lg font-bold\`}
+              style={{ backgroundColor: item }}
             >
-              {item}
+              {index}
             </div>
           );
         })}
@@ -67,7 +71,7 @@ export default index;`}
               className={`flex items-center justify-center w-full h-40 text-lg font-bold`}
               style={{ backgroundColor: item }}
             >
-              {index}
+              {`[index - ${index}] => ${item}`}
             </div>
           );
         })}
