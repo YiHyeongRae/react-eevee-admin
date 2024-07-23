@@ -116,7 +116,6 @@ export default function Carousel({
         setCurrentIndex((prev) => prev + 1);
       }
     }
-
     setIsSwipe(false);
     setDownPoint(0);
     setMovingAmount(0);
@@ -141,7 +140,7 @@ export default function Carousel({
   }, [sliderRef]);
 
   useEffect(() => {
-    if (infinite && !interval) {
+    if (infinite) {
       getCurrentIndex?.(
         currentIndex === slideList.length - 1 ? 1 : currentIndex
       );
@@ -151,7 +150,7 @@ export default function Carousel({
   }, [currentIndex]);
 
   useEffect(() => {
-    if (interval && !infinite) {
+    if (interval) {
       const newIndex =
         currentIndex + 1 > slideList?.length - 3 ? 0 : currentIndex + 1;
 
@@ -183,7 +182,11 @@ export default function Carousel({
           // Leave,Cancel을 걸어주지 않으면 객체 범위 밖으로 마우스,터치동작이 나가도 터치상대가 유지됨,
           // 즉 onMouseUp,onTouchEnd이벤트가 실행되지않아 고장날 수 있음
           onMouseLeave={() => mouseUpHandler()}
-          onTouchCancel={() => touchEndHandler()}
+          onTouchCancel={() => {
+            setIsSwipe(false);
+            setDownPoint(0);
+            setMovingAmount(0);
+          }}
           // infinite loop때 트릭을위해 TransitionEnd때 함수 실행
           onTransitionEnd={() => {
             infiniteLoop();
@@ -231,7 +234,11 @@ export default function Carousel({
           // Leave,Cancel을 걸어주지 않으면 객체 범위 밖으로 마우스,터치동작이 나가도 터치상대가 유지됨,
           // 즉 onMouseUp,onTouchEnd이벤트가 실행되지않아 고장날 수 있음
           onMouseLeave={() => mouseUpHandler()}
-          onTouchCancel={() => touchEndHandler()}
+          onTouchCancel={() => {
+            setIsSwipe(false);
+            setDownPoint(0);
+            setMovingAmount(0);
+          }}
         >
           <div
             id="content-wrap"
