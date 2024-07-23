@@ -52,7 +52,7 @@ function index() {
         </div>
       </div>
       {isExpand && (
-        <div className="grid grid-cols-1 gap-2 h-3/4">
+        <div className="grid grid-cols-1 gap-2 mb-2 h-3/4">
           <SyntaxHighlighter language="tsx" style={vscDarkPlus}>
             {`  import Table from "#/components/Table";
   import { useEffect, useState } from "react";
