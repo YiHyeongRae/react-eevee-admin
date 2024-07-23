@@ -133,6 +133,7 @@ export default function Carousel({
       setCurrentIndex(slideList.length - 2);
     }
   };
+
   useEffect(() => {
     if (sliderRef.current !== null) {
       setSliderWidth(sliderRef.current.clientWidth);
@@ -148,7 +149,6 @@ export default function Carousel({
       getCurrentIndex?.(currentIndex + 1);
     }
   }, [currentIndex]);
-  console.log(currentIndex, "?!");
 
   useEffect(() => {
     if (interval && !infinite) {
