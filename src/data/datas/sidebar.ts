@@ -1,4 +1,10 @@
 const SideBarData = [
+  // {
+  //   path: "/welcome",
+  //   key: "welcome",
+  //   sub: [],
+  //   access: ["ADMIN", "SUPER_ADMIN"],
+  // },
   {
     path: "/table/component",
     key: "table",
@@ -26,7 +32,6 @@ const SideBarData = [
     ],
     access: ["ADMIN", "SUPER_ADMIN"],
   },
-
   {
     path: "/modal/component",
     key: "modal",
@@ -45,6 +50,15 @@ const SideBarData = [
       { title: "기본", key: "basic", path: "/carousel/basic" },
       { title: "인피니트", key: "infinite", path: "/carousel/infinite" },
       { title: "인터벌", key: "interval", path: "/carousel/interval" },
+    ],
+    access: ["ADMIN", "SUPER_ADMIN"],
+  },
+  {
+    path: "/calendar/component",
+    key: "calendar",
+    sub: [
+      { title: "컴포넌트", key: "component", path: "/calendar/component" },
+      { title: "기본", key: "basic", path: "/calendar/basic" },
     ],
     access: ["ADMIN", "SUPER_ADMIN"],
   },

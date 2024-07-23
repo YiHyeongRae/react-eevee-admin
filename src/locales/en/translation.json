@@ -98,7 +98,8 @@
     "carousel": "Carousel",
     "tableExtensionHeader": "Table Extension Header",
     "infinite": "Infinite",
-    "interval": "Interval"
+    "interval": "Interval",
+    "calendar": "Calendar"
   },
   "placeholder": {
     "password": "6 or more characters can be used in English, numbers, and special characters",
