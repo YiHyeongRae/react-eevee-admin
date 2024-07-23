@@ -96,7 +96,9 @@
     "withHeader": "헤더",
     "custom": "커스텀 테이블",
     "carousel": "캐러셀",
-    "tableExtensionHeader": "테이블 확장 헤더"
+    "tableExtensionHeader": "테이블 확장 헤더",
+    "infinite": "인피니트",
+    "interval": "인터벌"
   },
   "placeholder": {
     "password": "6자리이상 영문,숫자,특수문자 가능",

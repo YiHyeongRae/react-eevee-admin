@@ -7,7 +7,7 @@ function index() {
   const [isExpand, setIsExpand] = useState(true);
   const { t } = useTranslation();
   return (
-    <>
+    <div className="flex flex-col gap-2">
       <div>
         <div
           className="badge badge-outline max-sm:text-xs"
@@ -47,7 +47,7 @@ export default index;`}
         </button>
       </ModalOpener>
       <Modal id="basic-modal-exam">i'm basic modal</Modal>
-    </>
+    </div>
   );
 }
 

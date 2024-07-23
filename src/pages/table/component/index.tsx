@@ -506,13 +506,13 @@ export default index;
   addedMap: string[][];
   checakble?: { active: boolean; multi: boolean; setter: Function };
   trOptions?: {
-    thead: {
-      className: string;
-      func: Function;
+    thead?: {
+      className?: string;
+      func?: Function;
     };
-    tbody: {
-      className: string;
-      func: Function;
+    tbody?: {
+      className?: string;
+      func?: Function;
     };
   };
   tdOptions?: {

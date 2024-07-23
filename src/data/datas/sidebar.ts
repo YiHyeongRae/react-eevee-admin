@@ -37,14 +37,16 @@ const SideBarData = [
     ],
     access: ["ADMIN", "SUPER_ADMIN"],
   },
-  // {
-  //   path: "/carousel/component",
-  //   key: "carousel",
-  //   sub: [
-  //     { title: "컴포넌트", key: "component", path: "/carousel/component" },
-  //     { title: "기본", key: "basic", path: "/carousel/basic" },
-  //   ],
-  //   access: ["ADMIN", "SUPER_ADMIN"],
-  // },
+  {
+    path: "/carousel/component",
+    key: "carousel",
+    sub: [
+      { title: "컴포넌트", key: "component", path: "/carousel/component" },
+      { title: "기본", key: "basic", path: "/carousel/basic" },
+      { title: "인피니트", key: "infinite", path: "/carousel/infinite" },
+      { title: "인터벌", key: "interval", path: "/carousel/interval" },
+    ],
+    access: ["ADMIN", "SUPER_ADMIN"],
+  },
 ];
 export default SideBarData;

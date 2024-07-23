@@ -1,12 +1,20 @@
 import { ReactNode } from "react";
 
-type CarouselTyees = {
+type CarouselInfinite = {
   initialIndexValue?: number;
   getCurrentIndex?: Function;
   children: ReactNode;
   infinite?: boolean;
-  speed?: number;
+  interval?: never;
 };
+type CarouselInterval = {
+  initialIndexValue?: number;
+  getCurrentIndex?: Function;
+  children: ReactNode;
+  infinite?: never;
+  interval?: number;
+};
+type CarouselTypes = CarouselInterval | CarouselInfinite;
 
 type TableTypes = {
   data: TdObjTypes[];
@@ -169,7 +177,7 @@ export type {
   TableThFunctionTypes,
   TableExtensionHeaderTypes,
   TdObjTypes,
-  CarouselTyees,
+  CarouselTypes,
   ModalTypes,
   ModalOpenerTypes,
   AlertTypes,
