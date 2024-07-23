@@ -46,7 +46,7 @@ function index() {
   const [searchText, setSearchText] = useState("");
   const [queryText, setQueryText] = useState("");
   return (
-    <>
+    <div className="flex flex-col gap-2">
       <div>
         <div
           className="badge badge-outline max-sm:text-xs"
@@ -141,7 +141,7 @@ export default index;`}
         addedMap={addedMap}
         searchText={searchText}
       />
-    </>
+    </div>
   );
 }
 

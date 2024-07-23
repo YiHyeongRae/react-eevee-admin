@@ -46,7 +46,7 @@ function index({ children }: { children: ReactNode }) {
           style={{
             maxHeight: isMaxSm ? "calc(100% - 106px)" : "calc(100% - 94px)",
           }}
-          className="h-full p-6 max-sm:p-2"
+          className="h-full p-6 overflow-y-auto max-sm:p-2"
         >
           <AccessGuard data={SidebarData} role={user.role}>
             {children}
