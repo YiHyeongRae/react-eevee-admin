@@ -89,7 +89,7 @@ function index() {
           active: true,
           setter: setQueryText,
           submit: () => {
-            alert(\`\axios.get(/\${queryText}/As/You/Want)\`);
+            \`axios.get(/As/You/Want?text=\${queryText}&startData=\${startDate}&endData=\${endDate})\`
           },
           disabled: queryText === "",
         }}
@@ -113,8 +113,10 @@ export default index;`}
         query={{
           active: true,
           setter: setQueryText,
-          submit: () => {
-            alert(`axios.get(/${queryText}/As/You/Want)`);
+          submit: (startDate: string, endDate: string) => {
+            alert(
+              `axios.get(/As/You/Want?text=${queryText}&startData=${startDate}&endData=${endDate})`
+            );
           },
           disabled: queryText === "",
         }}
