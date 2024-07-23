@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { CarouselTyees } from "../../data/types/components";
+import { CarouselTypes } from "../../data/types/components";
 // 캐러셀을 loop 돌리려면 infinite=true
 // 캐러셀 사용하는곳에서 현재인덱스가 필요하다면 getCurrentIndex={(params)=>{}}
 // 미리보기중 누른 사진의 인덱스로 캐러셀을 띄워주고싶다면 initialIndexValue에 해당 사진의 인덱스 설정
@@ -9,8 +9,8 @@ export default function Carousel({
   getCurrentIndex,
   children,
   infinite,
-  speed,
-}: CarouselTyees) {
+  interval,
+}: CarouselTypes) {
   // infinite 아니면 아래 배열 사용
   // React.Children.toArray method 미사용시 children은 유사배열로 array method 사용 불가
   const array = React.Children.toArray(children);
@@ -25,7 +25,9 @@ export default function Carousel({
   // 마우스가 이동한 양
   const [movingAmount, setMovingAmount] = useState(0);
   // 현재 슬라이드의 인덱스
-  const [currentIndex, setCurrentIndex] = useState(initialIndexValue ?? 1);
+  const [currentIndex, setCurrentIndex] = useState(
+    initialIndexValue ?? infinite ? 1 : 0
+  );
   // 객체의 width를 가져오기 위한 ref 선언
   const sliderRef = useRef<HTMLDivElement | null>(null);
 
@@ -138,30 +140,31 @@ export default function Carousel({
   }, [sliderRef]);
 
   useEffect(() => {
-    if (infinite) {
-      getCurrentIndex &&
-        getCurrentIndex(
-          currentIndex === slideList.length - 1 ? 1 : currentIndex
-        );
+    if (infinite && !interval) {
+      getCurrentIndex?.(
+        currentIndex === slideList.length - 1 ? 1 : currentIndex
+      );
     } else {
-      getCurrentIndex && getCurrentIndex(currentIndex + 1);
+      getCurrentIndex?.(currentIndex + 1);
     }
   }, [currentIndex]);
+  console.log(currentIndex, "?!");
 
   useEffect(() => {
-    if (speed) {
+    if (interval && !infinite) {
       const newIndex =
-        currentIndex + 1 > slideList?.length - 2 ? 1 : currentIndex + 1;
-      // currentIndex === slideList.length - 1 ? 1 : currentIndex;
+        currentIndex + 1 > slideList?.length - 3 ? 0 : currentIndex + 1;
+
       const timer = setInterval(() => {
-        setCurrentIndex && setCurrentIndex(newIndex);
-      }, speed);
+        setCurrentIndex(newIndex);
+      }, interval);
 
       return () => {
         clearInterval(timer);
       };
     }
   }, [currentIndex]);
+
   return (
     <div className="w-full">
       {infinite ? (
