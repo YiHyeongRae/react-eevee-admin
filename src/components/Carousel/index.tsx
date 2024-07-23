@@ -103,9 +103,6 @@ export default function Carousel({
     const mouseMoveAmount = movingAmount !== 0 ? downPoint - movingAmount : 0;
     const halfWidth = sliderWidth / 2;
     const standard = Math.round((mouseMoveAmount / halfWidth) * 100);
-    setIsSwipe(false);
-    setDownPoint(0);
-    setMovingAmount(0);
 
     if (standard < 0 && standard < -50) {
       if (!(currentIndex - 1 < 0)) {
@@ -114,12 +111,15 @@ export default function Carousel({
     }
 
     // infinite 분기처리
-
     if (standard > 0 && standard > 50) {
       if (!(currentIndex + 1 > (infinite ? slideList : array).length - 1)) {
         setCurrentIndex((prev) => prev + 1);
       }
     }
+
+    setIsSwipe(false);
+    setDownPoint(0);
+    setMovingAmount(0);
   };
 
   // infinite 설정 시 배열위치 재정렬 해주는 트릭용 함수
@@ -198,8 +198,8 @@ export default function Carousel({
               transform: `translateX(${
                 movingAmount !== 0 ? (downPoint - movingAmount) * -1 : 0
               }px)`,
-              transition: isAniamte
-                ? `all ${!isSwipe ? "200" : "0"}ms ease-in-out 0s`
+              transition: !isSwipe
+                ? `all ${isAniamte ? "100" : "0"}ms linear 0s`
                 : "",
             }}
           >
@@ -242,8 +242,11 @@ export default function Carousel({
               transform: `translateX(${
                 movingAmount !== 0 ? (downPoint - movingAmount) * -1 : 0
               }px)`,
-              transition: isAniamte
-                ? `all ${!isSwipe ? "200" : "0"}ms ease-in-out 0s`
+              // transition: isAniamte
+              //   ? `all ${!isSwipe ? "200" : "0"}ms ease-in-out 0s`
+              //   : "",
+              transition: !isSwipe
+                ? `all ${isAniamte ? "100" : "0"}ms linear 0s`
                 : "",
             }}
           >
