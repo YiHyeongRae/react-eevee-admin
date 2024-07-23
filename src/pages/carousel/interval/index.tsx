@@ -8,7 +8,14 @@ function index() {
   const [isExpand, setIsExpand] = useState(true);
   const { t } = useTranslation();
 
-  const exampleCarousel = 7;
+  const exampleCarousel = [
+    "rgb(43,132,115)",
+    "rgb(12,114,247)",
+    "rgb(211,179,134)",
+    "rgb(107,134,45)",
+    "rgb(107,30,33)",
+  ];
+
   return (
     <div className="flex flex-col gap-2">
       <div>
@@ -31,18 +38,20 @@ function index() {
   const exampleCarousel = 7;
 
   return (
-    <Carousel initialIndexValue={2}>
-      {_.times(exampleCarousel, (item) => {
-        return (
-          <div
-            className="flex items-center justify-center w-full h-40 text-lg font-bold bg-primary"
-            key={item}
-          >
-            {item}
-          </div>
-        );
-      })}
-    </Carousel>
+    <Carousel infinite>
+        {_.times(exampleCarousel, (item) => {
+          return (
+            <div
+              className={\`\flex items-center justify-center w-full h-40 text-lg font-bold \${
+                item === 0 ? "bg-primary" : "bg-secondary"
+              }\`}
+              key={item}
+            >
+              {item}
+            </div>
+          );
+        })}
+      </Carousel>
   );
 }
 
@@ -51,14 +60,14 @@ export default index;`}
         </div>
       )}
 
-      <Carousel initialIndexValue={2}>
-        {_.times(exampleCarousel, (item) => {
+      <Carousel interval={2000}>
+        {_.map(exampleCarousel, (item, index) => {
           return (
             <div
-              className="flex items-center justify-center w-full h-40 text-lg font-bold bg-primary"
-              key={item}
+              className={`flex items-center justify-center w-full h-40 text-lg font-bold`}
+              style={{ backgroundColor: item }}
             >
-              {item}
+              {index}
             </div>
           );
         })}

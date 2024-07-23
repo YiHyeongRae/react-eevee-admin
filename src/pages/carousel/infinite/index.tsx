@@ -31,18 +31,20 @@ function index() {
   const exampleCarousel = 7;
 
   return (
-    <Carousel initialIndexValue={2}>
-      {_.times(exampleCarousel, (item) => {
-        return (
-          <div
-            className="flex items-center justify-center w-full h-40 text-lg font-bold bg-primary"
-            key={item}
-          >
-            {item}
-          </div>
-        );
-      })}
-    </Carousel>
+    <Carousel infinite>
+        {_.times(exampleCarousel, (item) => {
+          return (
+            <div
+              className={\`\flex items-center justify-center w-full h-40 text-lg font-bold \${
+                item === 0 ? "bg-primary" : "bg-secondary"
+              }\`}
+              key={item}
+            >
+              {item}
+            </div>
+          );
+        })}
+      </Carousel>
   );
 }
 
@@ -51,11 +53,13 @@ export default index;`}
         </div>
       )}
 
-      <Carousel initialIndexValue={2}>
+      <Carousel infinite>
         {_.times(exampleCarousel, (item) => {
           return (
             <div
-              className="flex items-center justify-center w-full h-40 text-lg font-bold bg-primary"
+              className={`flex items-center justify-center w-full h-40 text-lg font-bold ${
+                item === 0 ? "bg-primary" : "bg-secondary"
+              }`}
               key={item}
             >
               {item}
