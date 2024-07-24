@@ -58,7 +58,14 @@
     "component": "Component",
     "types": "Types",
     "function": "Function",
-    "copy": "Copy"
+    "copy": "Copy",
+    "sun": "Sun",
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat"
   },
   "header": {
     "mypage": "My page",
