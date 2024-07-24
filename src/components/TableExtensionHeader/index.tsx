@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Calendar from "../Calendar";
 import { TableExtensionHeaderTypes } from "#/data/types/components";
+import useCalendar from "#/utils/useCalendar";
 
 function index({
   search = { active: true, setter: () => {} },
@@ -8,6 +9,7 @@ function index({
   etc,
 }: TableExtensionHeaderTypes) {
   const [openCalendar, setOpenCalendar] = useState<"start" | "end" | "">("");
+
   const [searchDate, setSearchDate] = useState({
     startDate: "",
     endDate: "",
@@ -62,14 +64,15 @@ function index({
                       onClick={() => {
                         setOpenCalendar("start");
                       }}
-                      // onBlur={() => setOpenCalendar("")}
                     />
                     {openCalendar === "start" && (
                       <div className="absolute left-0 z-[3] w-full max-w-xs rounded-md shadow-xl min-w-80 max-md:min-w-0 top-8 bg-base-100">
                         <Calendar
                           future={searchDate.endDate}
                           select={{
-                            selected: {},
+                            selected: useCalendar.separteDate(
+                              searchDate.startDate
+                            ),
                             setter: (item: string) => {
                               setSearchDate((prev) => {
                                 return { ...prev, startDate: item };
@@ -90,14 +93,15 @@ function index({
                       onClick={() => {
                         setOpenCalendar("end");
                       }}
-                      // onBlur={() => setOpenCalendar("")}
                     />
                     {openCalendar === "end" && (
                       <div className="absolute left-0 z-[3] w-full max-w-xs rounded-md shadow-xl min-w-80 max-md:min-w-0 top-8 bg-base-100">
                         <Calendar
                           past={searchDate.startDate}
                           select={{
-                            selected: {},
+                            selected: useCalendar.separteDate(
+                              searchDate.endDate
+                            ),
                             setter: (item: string) => {
                               setSearchDate((prev) => {
                                 return { ...prev, endDate: item };
