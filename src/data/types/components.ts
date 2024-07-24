@@ -132,8 +132,17 @@ type AuthGuardTypes = {
 };
 
 type CalendarTypes = {
-  weeksFormat?: string[];
-  select: { selected: { [key: string]: string | number }; setter: Function };
+  select: {
+    selected?: {
+      year: number;
+      month: number;
+      date: number;
+      day: number;
+      dateStr: string;
+    };
+    setter: Function;
+  };
+  closeFunc?: Function;
   past?: string;
   future?: string;
 };
