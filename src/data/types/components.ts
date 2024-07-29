@@ -159,13 +159,21 @@ type EditableCellTypes = {
 };
 
 type TimePickerTypes = {
-  fixedHeight: string;
+  fixedHeight?: string;
   type?: "half" | "full";
   select: {
-    // selected: { ampm: string; hour: string; minute: string; second: string };
-    selected: { ampm: string; hour: string; minute: string };
+    selected?: {
+      ampm: string;
+      hour: string;
+      minute: string;
+      second: string;
+      timeStr: string;
+    };
     setter: Function;
   };
+  second?: boolean;
+  perSecond?: 1 | 2 | 3 | 4 | 5 | 6 | 10 | 12;
+  perItems?: number;
 };
 
 type ToastTypes = {

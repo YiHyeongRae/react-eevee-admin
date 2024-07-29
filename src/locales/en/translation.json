@@ -106,7 +106,8 @@
     "tableExtensionHeader": "Table Extension Header",
     "infinite": "Infinite",
     "interval": "Interval",
-    "calendar": "Calendar"
+    "calendar": "Calendar",
+    "timePicker": "TimePicker"
   },
   "placeholder": {
     "password": "6 or more characters can be used in English, numbers, and special characters",

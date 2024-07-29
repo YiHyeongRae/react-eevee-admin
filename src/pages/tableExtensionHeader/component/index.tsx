@@ -102,7 +102,7 @@ function index({
                         <Calendar
                           future={searchDate.endDate}
                           select={{
-                            selected: separteDate(searchDate.startDate),
+                            selected: useDateTimes.separteDate(searchDate.startDate),
                             setter: (item: string) => {
                               setSearchDate((prev) => {
                                 return { ...prev, startDate: item };
@@ -129,7 +129,7 @@ function index({
                         <Calendar
                           past={searchDate.startDate}
                           select={{
-                            selected: separteDate(searchDate.endDate),
+                            selected: useDateTimes.separteDate(searchDate.endDate),
                             setter: (item: string) => {
                               setSearchDate((prev) => {
                                 return { ...prev, endDate: item };

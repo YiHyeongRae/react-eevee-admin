@@ -31,27 +31,48 @@ function index() {
   const [selected, setSelected] = useState();
 
   return (
-    <div className="flex flex-wrap gap-2">
-      <div className="flex-[1_1_24%]">
-        <div>basic seleted {selected}</div>
-        <Calendar setter={setSelected} />
+    <div className="flex flex-col gap-2">
+      <div className="flex flex-wrap justify-start gap-2">
+        <div className="flex-[1_1_18%]">
+          <div className="my-4 text-xl font-bold">
+            Basic seleted {selected}
+          </div>
+          <Calendar select={{ setter: setSelected }} />
+        </div>
       </div>
-      <div className="flex-[1_1_24%]">
-        <div>prevent past 2024-07-24</div>
-        <Calendar past="2024-07-24" setter={setSelected} />
+      <div className="flex flex-wrap justify-start gap-2">
+        <div className="flex-[1_1_18%]">
+          <div className="my-4 text-xl font-bold">
+            Prevent past 2024-07-24
+          </div>
+          <Calendar past="2024-07-24" select={{ setter: () => {} }} />
+        </div>
+        <div className="flex-[1_1_18%]">
+          <div className="my-4 text-xl font-bold">
+            Prevent future 2024-07-24
+          </div>
+          <Calendar future="2024-07-24" select={{ setter: () => {} }} />
+        </div>
+        <div className="flex-[1_1_18%]">
+          <div className="my-4 text-xl font-bold">Prevent both</div>
+          <Calendar
+            past="2024-07-12"
+            future="2024-07-28"
+            select={{ setter: () => {} }}
+          />
+        </div>
       </div>
-      <div className="flex-[1_1_24%]">
-        <div>prevent future 2024-07-24</div>
-        <Calendar future="2024-07-24" setter={setSelected} />
-      </div>
-      <div className="flex-[1_1_24%]">
-        <div>closeFunc</div>
-        <Calendar
-          closeFunc={() => {
-            alert("will fired close button clicked");
-          }}
-          setter={setSelected}
-        />
+
+      <div className="flex flex-wrap justify-start gap-2">
+        <div className="flex-[1_1_18%]">
+          <div className="my-4 text-xl font-bold">closeFunc</div>
+          <Calendar
+            closeFunc={() => {
+              alert("will fired close button clicked");
+            }}
+            select={{ setter: () => {} }}
+          />
+        </div>
       </div>
     </div>
   );
@@ -62,27 +83,48 @@ export default index;`}
         </div>
       )}
 
-      <div className="flex flex-wrap gap-2">
-        <div className="flex-[1_1_24%]">
-          <div className="text-xl font-bold">basic seleted {selected}</div>
-          <Calendar select={{ setter: setSelected }} />
+      <div className="flex flex-col gap-2">
+        <div className="flex flex-wrap justify-start gap-2">
+          <div className="flex-[1_1_18%]">
+            <div className="my-4 text-xl font-bold">
+              Basic seleted {selected}
+            </div>
+            <Calendar select={{ setter: setSelected }} />
+          </div>
         </div>
-        <div className="flex-[1_1_24%]">
-          <div>prevent past 2024-07-24</div>
-          <Calendar past="2024-07-24" select={{ setter: setSelected }} />
+        <div className="flex flex-wrap justify-start gap-2">
+          <div className="flex-[1_1_18%]">
+            <div className="my-4 text-xl font-bold">
+              Prevent past 2024-07-24
+            </div>
+            <Calendar past="2024-07-24" select={{ setter: () => {} }} />
+          </div>
+          <div className="flex-[1_1_18%]">
+            <div className="my-4 text-xl font-bold">
+              Prevent future 2024-07-24
+            </div>
+            <Calendar future="2024-07-24" select={{ setter: () => {} }} />
+          </div>
+          <div className="flex-[1_1_18%]">
+            <div className="my-4 text-xl font-bold">Prevent both</div>
+            <Calendar
+              past="2024-07-12"
+              future="2024-07-28"
+              select={{ setter: () => {} }}
+            />
+          </div>
         </div>
-        <div className="flex-[1_1_24%]">
-          <div>prevent future 2024-07-24</div>
-          <Calendar future="2024-07-24" select={{ setter: setSelected }} />
-        </div>
-        <div className="flex-[1_1_24%]">
-          <div>closeFunc</div>
-          <Calendar
-            closeFunc={() => {
-              alert("will fired close button clicked");
-            }}
-            select={{ setter: setSelected }}
-          />
+
+        <div className="flex flex-wrap justify-start gap-2">
+          <div className="flex-[1_1_18%]">
+            <div className="my-4 text-xl font-bold">closeFunc</div>
+            <Calendar
+              closeFunc={() => {
+                alert("will fired close button clicked");
+              }}
+              select={{ setter: () => {} }}
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Calendar from "../Calendar";
 import { TableExtensionHeaderTypes } from "#/data/types/components";
-import useCalendar from "#/utils/useCalendar";
+
+import useDateTimes from "#/utils/useDateTimes";
 
 function index({
   search = { active: true, setter: () => {} },
@@ -70,7 +71,7 @@ function index({
                         <Calendar
                           future={searchDate.endDate}
                           select={{
-                            selected: useCalendar.separteDate(
+                            selected: useDateTimes.separteDate(
                               searchDate.startDate
                             ),
                             setter: (item: string) => {
@@ -99,7 +100,7 @@ function index({
                         <Calendar
                           past={searchDate.startDate}
                           select={{
-                            selected: useCalendar.separteDate(
+                            selected: useDateTimes.separteDate(
                               searchDate.endDate
                             ),
                             setter: (item: string) => {

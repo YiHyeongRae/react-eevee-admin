@@ -473,7 +473,7 @@ export default index;
               style={vscDarkPlus}
               className="flex-auto Function"
             >
-              {`const useCalendar = {
+              {`const useDateTimes = {
   separteDate: (fullDateStr: string) => {
     const year = new Date(fullDateStr).getFullYear();
     const month = new Date(fullDateStr).getMonth();
@@ -485,7 +485,7 @@ export default index;
   },
 };
 
-export default useCalendar;
+export default useDateTimes;
 
 `}
             </SyntaxHighlighter>
