@@ -62,5 +62,14 @@ const SideBarData = [
     ],
     access: ["ADMIN", "SUPER_ADMIN"],
   },
+  {
+    path: "/timePicker/component",
+    key: "timePicker",
+    sub: [
+      { title: "컴포넌트", key: "component", path: "/timePicker/component" },
+      { title: "기본", key: "basic", path: "/timePicker/basic" },
+    ],
+    access: ["ADMIN", "SUPER_ADMIN"],
+  },
 ];
 export default SideBarData;
