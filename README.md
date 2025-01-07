@@ -1,30 +1,83 @@
-# React + TypeScript + Vite
+# React + TypeScript + Vite + TailwindCSS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Customize freely and complete the table regardless of the data format.
 
-Currently, two official plugins are available:
+- Npm : https://www.npmjs.com/package/gridsify
+- Docs : https://gridsify.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Install
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```
+npm i gridsify
+yarn add gridsify
+pnpm add gridsify
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Basic Usage
+
+```js
+import { useEffect, useState } from "react";
+import { Gridsify } from "gridsify";
+
+function index() {
+  const addedMap = [
+    ["id", "id"],
+    ["userId", "유저 ID"],
+    ["title", "제목"],
+    ["body", "내용"],
+  ];
+
+  // see data structure
+  // [
+  //   {
+  //     "userId": 1,
+  //     "id": 1,
+  //     "title": "sunt aut facere repellat...",
+  //     "body": "quia et suscipit\nsuscipit...",
+  //   }, ...
+  // ]
+
+  const [data, setData] = useState([]);
+
+  const [perPage, setPerPage] = useState({
+    page: 1,
+    perPage: 20,
+    pageLength: 1,
+  });
+
+  const getData = async () => {
+    await fetch(
+      `https://jsonplaceholder.typicode.com/posts?_page=${perPage.page}&_limit=${perPage.perPage}`
+    ).then(async (res) => {
+      const result = await res.json();
+      setData(result);
+      setPerPage((prev) => {
+        return { ...prev, pageLength: 100 / perPage.perPage };
+      });
+    });
+  };
+
+  useEffect(() => {
+    getData();
+  }, [perPage.page, perPage.perPage]);
+
+  return (
+    <Gridsify
+      data={data || []}
+      addedMap={addedMap}
+      perPageOptions={{
+        page: perPage.page,
+        perPage: perPage.perPage,
+        pageLength: perPage.pageLength,
+        setPerPage: setPerPage,
+      }}
+    />
+  );
+}
+
+export default index;
+```
+
+## Contact
+
+dev.yihr@gmail.com

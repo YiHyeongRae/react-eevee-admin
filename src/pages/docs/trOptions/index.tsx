@@ -104,7 +104,7 @@ function index() {
               d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
             ></path>
           </svg>
-          <span className="flex flex-col items-start w-full max-md:text-sm">
+          <span className="flex flex-col items-start w-full gap-1 max-md:text-sm max-sm:items-center">
             {`trOptions : { thead : { className, func, isDraggable },
             { tbody : { className, func, isDraggable , dragEndFunc, dbClickFunc } } }`}
             <span className="inline-block w-max max-md:text-sm">
