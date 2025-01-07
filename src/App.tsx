@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { IRouteTypes, PagesTypes } from "./data/types/routes";
 import LoadingProvider from "./components/LoadingContextProvider";
+import { Analytics } from "@vercel/analytics/react";
 
 const pages: PagesTypes = import.meta.glob("./pages/**/*.tsx", { eager: true });
 const routes: IRouteTypes[] = [];
@@ -44,15 +45,10 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  // useEffect(() => {
-  //   const htmlEl = document.getElementsByTagName("html");
-  //   const currentTheme = localStorage.getItem("currentTheme") || "forest";
-
-  //   htmlEl[0].setAttribute("data-theme", currentTheme);
-  // }, []);
   return (
     <LoadingProvider>
       <RouterProvider router={router} />
+      <Analytics />
     </LoadingProvider>
   );
 }
