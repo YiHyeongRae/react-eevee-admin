@@ -1,6 +1,5 @@
 import { map } from "lodash";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
 function index() {
   const { t } = useTranslation();

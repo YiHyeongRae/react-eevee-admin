@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import basicCode from "#/data/codes/table/basic.txt";
-import { Gridsify } from "gridsify";
 import { useLoadingContext } from "#/utils/useLoadingContext";
 import Table from "#/components/Table";
 function index() {

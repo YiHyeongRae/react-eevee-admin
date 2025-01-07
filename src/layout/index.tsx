@@ -1,5 +1,4 @@
 import { ReactNode, useEffect, useState } from "react";
-import Header from "./header/header";
 import Sidebar from "./sidebar/sidebar";
 import Paths from "../data/datas/paths";
 import { useTranslation } from "react-i18next";

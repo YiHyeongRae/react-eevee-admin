@@ -1,13 +1,7 @@
 import { useTranslation } from "react-i18next";
 
-import { useState } from "react";
-
 function index() {
-  const { t, i18n } = useTranslation();
-
-  const [currentTheme, setCurrentTheme] = useState(
-    localStorage.getItem("currentTheme")
-  );
+  const { i18n } = useTranslation();
 
   return (
     <div
