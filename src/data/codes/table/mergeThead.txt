@@ -1,0 +1,137 @@
+import { useEffect, useState } from "react";
+import { Gridsify } from "gridsify";
+
+function index() {
+  const addedMap = [
+    ["id", "id"],
+    ["name", "이름"],
+    ["username", "유저 이름"],
+    ["email", "이메일"],
+    ["phone", "전화번호"],
+    ["website", "홈페이지"],
+    ["street", "거리"],
+    ["suite", "호"],
+    ["city", "도시"],
+    ["zipcode", "우편번호"],
+    ["lat", "위도"],
+    ["lng", "경도"],
+    ["catchPhrase", "슬로건"],
+    ["bs", "비즈니스 전략"],
+  ];
+
+  const myMergeOptions = {
+    colSpanStarter: {
+      name: {
+        title: "사용자 정보",
+        colSpan: 4,
+      },
+      street: {
+        title: "회사주소",
+        colSpan: 6,
+      },
+      catchPhrase: {
+        title: "회사이념",
+        colSpan: 2,
+      },
+    },
+    colSpanTarget: [
+      "name",
+      "username",
+      "email",
+      "phone",
+      "street",
+      "suite",
+      "city",
+      "zipcode",
+      "lat",
+      "lng",
+      "catchPhrase",
+      "bs",
+    ],
+  };
+
+  // see data structure
+  // [
+  //   {
+  //     "id": 1,
+  //     "name": "Leanne Graham",
+  //     "username": "Bret",
+  //     "email": "Sincere@april.biz",
+  //     "address": {
+  //       "street": "Kulas Light",
+  //       "suite": "Apt. 556",
+  //       "city": "Gwenborough",
+  //       "zipcode": "92998-3874",
+  //       "geo": {
+  //         "lat": "-37.3159",
+  //         "lng": "81.1496"
+  //       }
+  //     },
+  //     "phone": "1-770-736-8031 x56442",
+  //     "website": "hildegard.org",
+  //     "company": {
+  //       "name": "Romaguera-Crona",
+  //       "catchPhrase": "Multi-layered client-server neural-net",
+  //       "bs": "harness real-time e-markets"
+  //     }
+  //   }, ...
+  // ]
+
+  const [data, setData] = useState<{}[]>([]);
+
+  const [perPage, setPerPage] = useState({
+    page: 1,
+    perPage: 10,
+    pageLength: 1,
+  });
+
+  const getData = async () => {
+    await fetch(
+      `https://jsonplaceholder.typicode.com/users?_page=${perPage.page}&_limit=${perPage.perPage}`
+    ).then(async (res) => {
+      const result = await res.json();
+      const emptyArray: {}[] = [];
+
+      map(result, (item) => {
+        const flatObject = {
+          ...item,
+          ...item.address,
+          ...item.address.geo,
+        };
+        flatObject.catchPhrase = item.company.catchPhrase;
+        flatObject.bs = item.company.bs;
+
+        delete flatObject.address;
+        delete flatObject.geo;
+        delete flatObject.company;
+        emptyArray.push(flatObject);
+      });
+
+      setData(emptyArray);
+      setPerPage((prev) => {
+        return { ...prev, pageLength: 10 / perPage.perPage };
+      });
+    });
+  };
+
+  useEffect(() => {
+    getData();
+  }, [perPage.page, perPage.perPage]);
+
+  return (
+      <Gridsify
+        data={data || []}
+        addedMap={addedMap}
+        perPageOptions={{
+          page: perPage.page,
+          perPage: perPage.perPage,
+          pageLength: perPage.pageLength,
+          setPerPage: setPerPage,
+        }}
+        perPageList={[2, 5, 10]}
+        mergeTheadTrOptions={myMergeOptions}
+      />
+  );
+}
+
+export default index;

@@ -22,9 +22,7 @@ export const useTable = {
       for (let i = 0; i < keys2.length; i++) {
         tdObj[keys2[i]] =
           keys2[i] === "no"
-            ? // ? index + 1
-
-              (page - 1) * perPage + index + 1
+            ? (page - 1) * perPage + index + 1
             : item[keys2[i]] !== undefined
             ? item[keys2[i]]
             : "";
@@ -32,14 +30,12 @@ export const useTable = {
       tdArray.push(tdObj);
     });
 
-    // console.log("tdArray", tdArray, perPage);
     const result = [];
     for (let i = 0; i < tdArray.length; i += perPage) {
       const mnfArray = tdArray.slice(i, i + perPage);
       result.push(mnfArray);
     }
 
-    // setter(result);
     setter(tdArray);
   },
 

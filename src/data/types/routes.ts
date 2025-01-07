@@ -9,7 +9,6 @@ interface RouteCommonTypes {
 interface IRouteTypes extends RouteCommonTypes {
   path: string;
   Element: React.ComponentType<{}>;
-  withAuth: boolean;
 }
 
 interface PagesTypes {
