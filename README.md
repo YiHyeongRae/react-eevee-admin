@@ -4,6 +4,7 @@ Customize freely and complete the table regardless of the data format.
 
 - Npm : https://www.npmjs.com/package/gridsify
 - Docs : https://gridsify.vercel.app/
+- Github : https://github.com/YiHyeongRae/gridsify
 
 ## Install
 
