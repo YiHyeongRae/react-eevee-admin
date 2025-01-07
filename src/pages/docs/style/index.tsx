@@ -66,7 +66,7 @@ function index() {
             d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
           ></path>
         </svg>
-        <span className="flex flex-col text-left max-md:text-sm">
+        <span className="flex flex-col gap-1 text-left max-md:text-sm max-sm:items-center">
           {t(`guides.recommandDaisyUI`)}
           <a
             className="inline-block w-max link link-error max-md:text-sm"
