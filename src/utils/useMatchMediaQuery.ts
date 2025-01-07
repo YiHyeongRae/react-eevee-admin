@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-// useMediaQuery 커스텀 훅
 export default function useMatchMediaQuery(query: string) {
   const [matches, setMatches] = useState(window.matchMedia(query).matches);
 
@@ -10,7 +9,6 @@ export default function useMatchMediaQuery(query: string) {
 
     mediaQueryList.addEventListener("change", documentChangeHandler);
 
-    // Clean up the event listener on unmount
     return () => {
       mediaQueryList.removeEventListener("change", documentChangeHandler);
     };

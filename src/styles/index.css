@@ -7,45 +7,10 @@ body,
   width: 100%;
   height: 100%;
 }
-/* 
-.hero.login:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgb(239, 239, 239);
-  background: -moz-radial-gradient(
-    circle,
-    rgba(239, 239, 239, 1) 0%,
-    rgba(221, 214, 254, 1) 33%,
-    rgba(216, 210, 255, 1) 66%,
-    rgba(239, 239, 239, 1) 100%
-  );
-  background: -webkit-radial-gradient(
-    circle,
-    rgba(239, 239, 239, 1) 0%,
-    rgba(221, 214, 254, 1) 33%,
-    rgba(216, 210, 255, 1) 66%,
-    rgba(239, 239, 239, 1) 100%
-  );
-  background: radial-gradient(
-    circle,
-    rgba(239, 239, 239, 1) 0%,
-    rgba(221, 214, 254, 1) 33%,
-    rgba(216, 210, 255, 1) 66%,
-    rgba(239, 239, 239, 1) 100%
-  );
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#efefef",endColorstr="#efefef",GradientType=1);
-} */
+
 .menu-dropdown {
   visibility: hidden;
   opacity: 0;
-}
-
-.table :where(thead, tfoot) {
-  color: var(--fallback-bc, oklch(var(--bk)));
 }
 
 .input:focus,
@@ -65,23 +30,9 @@ body,
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-.inherit.input:has(> input[disabled]),
-.inherit.input-disabled,
-.inherit.input:disabled,
-.inherit.input[disabled] {
-  /* background-color: inherit !important; */
-  color: var(--fallback-bc3, oklch(var(--bc3)));
-}
-
-.inherit.textarea-disabled,
-.inherit.textarea:disabled,
-.inherit.textarea[disabled] {
-  /* background-color: inherit !important; */
-  color: var(--fallback-bc3, oklch(var(--bc3)));
-}
 
 .layout {
-  background-color: var(--fallback-b1, oklch(var(--b1)));
+  /* background-color: var(--fallback-b2, oklch(var(--b2))); */
 }
 @keyframes progress {
   from {
@@ -100,11 +51,43 @@ body,
 .menu-dropdown-sub:hover {
   visibility: visible;
 }
-:where(
-    .menu li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)
-  ):not(.active, .btn):hover,
-:where(
-    .menu li:not(.menu-title, .disabled) > details > summary:not(.menu-title)
-  ):not(.active, .btn):hover {
-  background-color: var(--fallback-p, oklch(var(--p) / 0.7));
+
+@keyframes dropDownBadge {
+  0% {
+    transform: translateX(48px);
+    animation-timing-function: ease-in;
+    opacity: 1;
+  }
+  24% {
+    opacity: 1;
+  }
+  40% {
+    transform: translateX(26px);
+    animation-timing-function: ease-in;
+  }
+  65% {
+    transform: translateX(13px);
+    animation-timing-function: ease-in;
+  }
+  82% {
+    transform: translateX(6.5px);
+    animation-timing-function: ease-in;
+  }
+  93% {
+    transform: translateX(4px);
+    animation-timing-function: ease-in;
+  }
+  25%,
+  55%,
+  75%,
+  87%,
+  98% {
+    transform: translateX(0px);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: translateX(0px);
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
 }
