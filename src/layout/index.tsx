@@ -38,7 +38,7 @@ function index({ children }: { children: ReactNode }) {
         className={`layout h-full`}
         style={{ paddingLeft: isMaxSm ? "0" : "14rem" }}
       >
-        <div className="fixed z-[999] p-1 rounded-full bg-primary top-[15px] right-4 dropdown dropdown-left max-md:top-[16px]">
+        <div className="fixed z-[9999] p-1 rounded-full bg-primary top-[15px] right-4 dropdown dropdown-left max-md:top-[16px]">
           <div tabIndex={0} role="button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +118,7 @@ function index({ children }: { children: ReactNode }) {
             </div>
           </div>
         )}
-        <Sidebar data={Paths} navState={navState} />
+        <Sidebar data={Paths} navState={navState} setNavState={setNavState} />
         <div className="border mockup-browser border-base-300">
           <div className="mockup-browser-toolbar">
             <div className="ml-auto mr-auto text-sm breadcrumbs max-md:text-xs">
