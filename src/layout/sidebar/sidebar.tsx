@@ -2,7 +2,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { SidebarTypes } from "../../data/types/layout";
 import { useState } from "react";
+import useMatchMediaQuery from "#/utils/useMatchMediaQuery";
 function index({ data, navState, setNavState }: SidebarTypes) {
+  const isMaxSm = useMatchMediaQuery("not all and (min-width: 768px)");
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -64,7 +66,9 @@ function index({ data, navState, setNavState }: SidebarTypes) {
             key={`no-sub-menu-${index}`}
             onClick={() => {
               navigate(item.path);
-              setNavState(true);
+              if (isMaxSm) {
+                setNavState(true);
+              }
             }}
             className={`${targetPath === item.key && "bg-primary"}`}
           >
@@ -79,7 +83,9 @@ function index({ data, navState, setNavState }: SidebarTypes) {
             key={`menu-${index}`}
             onClick={() => {
               navigate(item.path);
-              setNavState(true);
+              if (isMaxSm) {
+                setNavState(true);
+              }
             }}
           >
             <span
@@ -109,8 +115,9 @@ function index({ data, navState, setNavState }: SidebarTypes) {
                     onClick={(e) => {
                       navigate(subItem.path);
                       e.stopPropagation();
-
-                      setNavState(true);
+                      if (isMaxSm) {
+                        setNavState(true);
+                      }
                     }}
                   >
                     <span
