@@ -107,66 +107,68 @@ function index() {
           <span className="flex flex-col items-start w-full gap-1 max-md:text-sm max-sm:items-center">
             {`trOptions : { thead : { className, func, isDraggable },
             { tbody : { className, func, isDraggable , dragEndFunc, dbClickFunc } } }`}
-            <span className="inline-block w-max max-md:text-sm">
+            <span className="inline-block max-md:text-sm">
               {t("guides.requireTbody")}
             </span>
           </span>
         </div>
-        <table className="table" id="api-table">
-          <thead>
-            <tr className="border-secondary">
-              <th></th>
-              <td> {t(`common.props`)}</td>
-              <td> {t(`common.description`)}</td>
-              <td> {t(`common.type`)}</td>
-              <td> {t(`common.note`)}</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="border-zinc-500">
-              <th>1</th>
-              <td>className</td>
-              <td>{t("guides.trOptionsDescription1")}</td>
+        <div className="overflow-x-auto">
+          <table className="table" id="api-table">
+            <thead>
+              <tr className="border-secondary">
+                <th></th>
+                <td> {t(`common.props`)}</td>
+                <td> {t(`common.description`)}</td>
+                <td> {t(`common.type`)}</td>
+                <td> {t(`common.note`)}</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-zinc-500">
+                <th>1</th>
+                <td>className</td>
+                <td>{t("guides.trOptionsDescription1")}</td>
 
-              <td>Fucntion</td>
-              <td>-</td>
-            </tr>
-            <tr className="border-zinc-500">
-              <th>2</th>
-              <td>func</td>
-              <td>{t("guides.trOptionsDescription2")}</td>
-              <td>Function</td>
-              <td>-</td>
-            </tr>
-            <tr className="border-zinc-500">
-              <th>3</th>
-              <td>isDraggable</td>
-              <td>{t("guides.trOptionsDescription3")}</td>
-              <td>Function</td>
-              <td>-</td>
-            </tr>
-            <tr className="border-zinc-500">
-              <th>4</th>
-              <td>dragEndFunc</td>
-              <td>{t("guides.trOptionsDescription4")}</td>
+                <td>Fucntion</td>
+                <td>-</td>
+              </tr>
+              <tr className="border-zinc-500">
+                <th>2</th>
+                <td>func</td>
+                <td>{t("guides.trOptionsDescription2")}</td>
+                <td>Function</td>
+                <td>-</td>
+              </tr>
+              <tr className="border-zinc-500">
+                <th>3</th>
+                <td>isDraggable</td>
+                <td>{t("guides.trOptionsDescription3")}</td>
+                <td>Function</td>
+                <td>-</td>
+              </tr>
+              <tr className="border-zinc-500">
+                <th>4</th>
+                <td>dragEndFunc</td>
+                <td>{t("guides.trOptionsDescription4")}</td>
 
-              <td>Function</td>
-              <td>{t("guides.trOptionsNote1")}</td>
-            </tr>
-            <tr className="border-zinc-500">
-              <th>5</th>
-              <td>dbClickFunc</td>
-              <td>{t("guides.trOptionsDescription5")}</td>
+                <td>Function</td>
+                <td>{t("guides.trOptionsNote1")}</td>
+              </tr>
+              <tr className="border-zinc-500">
+                <th>5</th>
+                <td>dbClickFunc</td>
+                <td>{t("guides.trOptionsDescription5")}</td>
 
-              <td>Function</td>
-              <td>{t("guides.trOptionsNote1")}</td>
-            </tr>
-          </tbody>
-        </table>
+                <td>Function</td>
+                <td>{t("guides.trOptionsNote1")}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div className="divider"></div>
 
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         <button
           className="btn btn-primary btn-sm"
           onClick={() => {

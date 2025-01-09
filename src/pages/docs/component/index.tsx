@@ -71,7 +71,7 @@ function index() {
   ];
   return (
     <>
-      <div className="grid grid-cols-2 gap-2 overflow-hidden h-3/4 max-md:grid-cols-1 max-md:h-dvh">
+      <div className="grid grid-cols-2 gap-2 overflow-hidden h-3/4 max-md:grid-cols-1">
         <div className="grid col-span-1 overflow-auto">
           <div className="flex flex-wrap col-span-1 gap-2 mr-1">
             <div className="py-3 badge badge-primary max-sm:text-xs">

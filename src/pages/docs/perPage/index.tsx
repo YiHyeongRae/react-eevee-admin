@@ -86,55 +86,56 @@ function index() {
 
       <div>
         <div className="text-lg">PerPageOptions</div>
-
-        <table className="table" id="api-table">
-          <thead>
-            <tr className="border-secondary">
-              <th></th>
-              <td> {t(`common.props`)}</td>
-              <td> {t(`common.description`)}</td>
-              <td> {t(`common.type`)}</td>
-              <td> {t(`common.note`)}</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="border-zinc-500">
-              <th>1</th>
-              <td>page</td>
-              <td>{t("guides.perPageOptionsDescription1")}</td>
-              <td>number</td>
-              <td className="whitespace-pre-wrap">-</td>
-            </tr>
-            <tr className="border-zinc-500">
-              <th>2</th>
-              <td>perPage</td>
-              <td>{t("guides.perPageOptionsDescription2")}</td>
-              <td>number</td>
-              <td>-</td>
-            </tr>
-            <tr className="border-zinc-500">
-              <th>3</th>
-              <td>pageLength</td>
-              <td>{t("guides.perPageOptionsDescription3")}</td>
-              <td>number</td>
-              <td>{t("guides.perPageOptionsNote1")}</td>
-            </tr>
-            <tr className="border-zinc-500">
-              <th>4</th>
-              <td>setPerPage</td>
-              <td>{t("guides.perPageOptionsDescription4")}</td>
-              <td>Function</td>
-              <td>-</td>
-            </tr>
-            <tr className="border-zinc-500">
-              <th>5</th>
-              <td>el</td>
-              <td>{t("guides.perPageOptionsDescription5")}</td>
-              <td>React.ReactNode</td>
-              <td>{t("guides.perPageOptionsNote2")}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="overflow-x-auto">
+          <table className="table" id="api-table">
+            <thead>
+              <tr className="border-secondary">
+                <th></th>
+                <td> {t(`common.props`)}</td>
+                <td> {t(`common.description`)}</td>
+                <td> {t(`common.type`)}</td>
+                <td> {t(`common.note`)}</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-zinc-500">
+                <th>1</th>
+                <td>page</td>
+                <td>{t("guides.perPageOptionsDescription1")}</td>
+                <td>number</td>
+                <td className="whitespace-pre-wrap">-</td>
+              </tr>
+              <tr className="border-zinc-500">
+                <th>2</th>
+                <td>perPage</td>
+                <td>{t("guides.perPageOptionsDescription2")}</td>
+                <td>number</td>
+                <td>-</td>
+              </tr>
+              <tr className="border-zinc-500">
+                <th>3</th>
+                <td>pageLength</td>
+                <td>{t("guides.perPageOptionsDescription3")}</td>
+                <td>number</td>
+                <td>{t("guides.perPageOptionsNote1")}</td>
+              </tr>
+              <tr className="border-zinc-500">
+                <th>4</th>
+                <td>setPerPage</td>
+                <td>{t("guides.perPageOptionsDescription4")}</td>
+                <td>Function</td>
+                <td>-</td>
+              </tr>
+              <tr className="border-zinc-500">
+                <th>5</th>
+                <td>el</td>
+                <td>{t("guides.perPageOptionsDescription5")}</td>
+                <td>React.ReactNode</td>
+                <td>{t("guides.perPageOptionsNote2")}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div className="divider"></div>
       <div>
@@ -147,7 +148,7 @@ function index() {
             pageLength: perPage.pageLength,
             setPerPage: setPerPage,
             el: (
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <div>perPage : </div>
                 {map(customPerPage, (item) => (
                   <div
