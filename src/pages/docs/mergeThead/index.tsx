@@ -183,36 +183,38 @@ function index() {
             </span>
           </span>
         </div>
-        <table className="table" id="api-table">
-          <thead>
-            <tr className="border-secondary">
-              <th></th>
-              <td> {t(`common.props`)}</td>
-              <td> {t(`common.description`)}</td>
-              <td> {t(`common.type`)}</td>
-              <td> {t(`common.note`)}</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="border-zinc-500">
-              <th>1</th>
-              <td>colSpanStarter</td>
-              <td>{t("guides.mergeTheadTrOptionsDescription1")}</td>
-              <td>object</td>
-              <td className="whitespace-pre-wrap">
-                {t("guides.mergeTheadTrOptionsNote1")}
-              </td>
-            </tr>
-            <tr className="border-zinc-500">
-              <th>2</th>
-              <td>colSpanTarget</td>
-              <td>{t("guides.mergeTheadTrOptionsDescription2")}</td>
+        <div className="overflow-x-auto">
+          <table className="table" id="api-table">
+            <thead>
+              <tr className="border-secondary">
+                <th></th>
+                <td> {t(`common.props`)}</td>
+                <td> {t(`common.description`)}</td>
+                <td> {t(`common.type`)}</td>
+                <td> {t(`common.note`)}</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-zinc-500">
+                <th>1</th>
+                <td>colSpanStarter</td>
+                <td>{t("guides.mergeTheadTrOptionsDescription1")}</td>
+                <td>object</td>
+                <td className="whitespace-pre-wrap">
+                  {t("guides.mergeTheadTrOptionsNote1")}
+                </td>
+              </tr>
+              <tr className="border-zinc-500">
+                <th>2</th>
+                <td>colSpanTarget</td>
+                <td>{t("guides.mergeTheadTrOptionsDescription2")}</td>
 
-              <td>{`Array<string>`}</td>
-              <td>-</td>
-            </tr>
-          </tbody>
-        </table>
+                <td>{`Array<string>`}</td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div className="divider"></div>
       <div>

@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { SidebarTypes } from "../../data/types/layout";
 import { useState } from "react";
-function index({ data, navState }: SidebarTypes) {
+function index({ data, navState, setNavState }: SidebarTypes) {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -64,6 +64,7 @@ function index({ data, navState }: SidebarTypes) {
             key={`no-sub-menu-${index}`}
             onClick={() => {
               navigate(item.path);
+              setNavState(true);
             }}
             className={`${targetPath === item.key && "bg-primary"}`}
           >
@@ -78,6 +79,7 @@ function index({ data, navState }: SidebarTypes) {
             key={`menu-${index}`}
             onClick={() => {
               navigate(item.path);
+              setNavState(true);
             }}
           >
             <span
@@ -107,6 +109,8 @@ function index({ data, navState }: SidebarTypes) {
                     onClick={(e) => {
                       navigate(subItem.path);
                       e.stopPropagation();
+
+                      setNavState(true);
                     }}
                   >
                     <span

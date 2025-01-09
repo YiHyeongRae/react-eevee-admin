@@ -31,9 +31,6 @@ body,
   scrollbar-width: none;
 }
 
-.layout {
-  /* background-color: var(--fallback-b2, oklch(var(--b2))); */
-}
 @keyframes progress {
   from {
     width: 100%;

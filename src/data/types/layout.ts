@@ -8,6 +8,7 @@ type SidebarTypes = {
     }[];
   }[];
   navState: boolean;
+  setNavState: Function;
 };
 
 type HeaderTypes = {
