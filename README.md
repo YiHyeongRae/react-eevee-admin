@@ -17,6 +17,20 @@ pnpm add gridsify
 ## Basic Usage
 
 ```js
+// tailwind.config.js
+module.exports = {
+  content: [
+    ... ,
+    "./node_modules/gridsify/**/*.{js,jsx}" // add this line !
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+```js
 import { useEffect, useState } from "react";
 import { Gridsify } from "gridsify";
 
